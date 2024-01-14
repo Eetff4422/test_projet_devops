@@ -1,0 +1,285 @@
+def telechargerPhotosMaison() {
+    // Code factice pour récupérer les photos
+    return ["photo1.jpg", "photo2.jpg", "photo3.jpg"]
+}
+
+def planifierEvenement(nom, date, invites) {
+    // Code factice pour planifier un évènement
+    println("Évènement planifié : $nom le $date avec les invités : $invites")
+}
+
+def partagerPhotos(album, personnes) {
+    // Code factice pour partager un album de photos
+    println("Photos de l'album $album partagées avec : $personnes")
+}
+
+def rechercherConcerts(ville, mois) {
+    // Code factice pour rechercher des concerts
+    return ["Concert1", "Concert2", "Concert3"]
+}
+
+def acheterBillets(concert) {
+    // Code factice pour acheter des billets
+    println("Billets achetés pour le concert : $concert")
+    return ["Billet1", "Billet2"]
+}
+
+def rechercherSpotsCamping(plage, date) {
+    // Code factice pour rechercher des spots de camping
+    return ["Spot1", "Spot2", "Spot3"]
+}
+
+def rechercherIdeesVoyage(continent) {
+    // Code factice pour rechercher des idées de voyage
+    return ["Idée1", "Idée2", "Idée3"]
+}
+
+def genererApercu3D(photos, meubles) {
+    // Code factice pour générer un aperçu 3D
+    println("Aperçu 3D généré à partir de photos et meubles")
+    return "Apercu3D"
+}
+
+def definirObjectifsSante() {
+    // Code factice pour définir des objectifs santé
+    return [sport: 2, meditation: 15]
+}
+
+def trackerActivites(objectifs) {
+    // Code factice pour suivre des activités
+    return [sport: 1, meditation: 7] // Valeurs fictives, assurez-vous de fournir des données réelles
+}
+
+def verifierObjectifs(objectifs, activites) {
+    // Code factice pour vérifier des objectifs atteints
+    println("Vérification des objectifs atteints")
+    return true
+}
+
+def envoyerMessagePositif(personne) {
+    // Code factice pour envoyer un message positif
+    println("Message positif envoyé à : $personne")
+}
+
+def genererEntreeJournal(nom) {
+    // Code factice pour générer une entrée de journal
+    return [titre: "Journal de $nom", texte: "Texte de l'entrée du journal"]
+}
+
+def enregistrerDonnees(donnees) {
+    // Code factice pour enregistrer en DB
+    println("Données enregistrées en base de données : $donnees")
+}
+
+def envoyerNotification(message) {
+    // Code factice pour envoyer une notification
+    println("Notification envoyée : $message")
+}
+
+// Fonctions manquantes ajoutées
+def selectionnerMeubles() {
+    // Code factice pour sélectionner des meubles
+    return ["Canapé", "Table", "Chaise"]
+}
+
+def recupererPersonne() {
+    // Code factice pour récupérer une personne
+    return "Personne1"
+}
+
+def albumVacances() {
+    // Code factice pour récupérer un album de vacances
+    return "AlbumVacances"
+}
+
+// Nouvelles fonctions basées sur l'énoncé
+def consulterMeteo(plage, date) {
+    // Code factice pour consulter la météo
+    return "Météo ensoleillée"
+}
+
+def planifierItineraire(ideeVoyage) {
+    // Code factice pour planifier un itinéraire de voyage
+    println("Itinéraire planifié pour l'idée de voyage : $ideeVoyage")
+    return "ItinérairePlanifié"
+}
+
+def trouverTutoriels(instrument) {
+    // Code factice pour trouver des tutoriels pour un instrument
+    return ["Tuto1", "Tuto2", "Tuto3"]
+}
+
+def jouerTutoriel(tuto) {
+    // Code factice pour jouer un tutoriel
+    println("Tutoriel joué : $tuto")
+}
+
+def enregistrerPerformance(morceau) {
+    // Code factice pour enregistrer une performance musicale
+    println("Performance enregistrée pour le morceau : $morceau")
+}
+
+def lancerMeditationGuidee(duree) {
+    // Code factice pour lancer une méditation guidée
+    println("Méditation guidée lancée pour une durée de $duree minutes")
+}
+
+def inscrireMarathon() {
+    // Code factice pour l'inscription à un marathon
+    return "Inscription au marathon réussie"
+}
+
+def prendreCoursSalsa() {
+    // Code factice pour prendre des cours de salsa
+    return "Cours de salsa commencés"
+}
+
+def apprendreCrochet() {
+    // Code factice pour apprendre à crocheter
+    return "Cours de crochet commencés"
+}
+
+def faireVoyageFamille() {
+    // Code factice pour faire un voyage en famille
+    return "Voyage en famille planifié"
+}
+
+def prendreCoursEchecs() {
+    // Code factice pour prendre des cours d'échecs
+    return "Cours d'échecs commencés"
+}
+
+def etudierDevOps() {
+    // Code factice pour étudier DevOps
+    return "Cours de DevOps étudié avec succès"
+}
+
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'MOIS', defaultValue: 'Janvier', description: 'Mois à exécuter')
+        string(name: 'NOM', defaultValue: 'Jean', description: 'Entrez votre nom')
+    }
+
+    stages {
+        stage('Réaliser les souhaits') {
+            steps {
+                script {
+                    def mois = params.MOIS
+
+                    switch (mois) {
+                        case 'Janvier':
+                            // Janvier : rédiger un journal intime
+                            def journalEntry = genererEntreeJournal("${params.NOM}")
+                            enregistrerDonnees(journalEntry)
+                            envoyerNotification("Nouvelle entrée pour ${params.NOM}")
+                            
+
+                        case 'Février':
+                            // Février : redécorer la maison
+                            def photos = telechargerPhotosMaison()
+                            def meubles = selectionnerMeubles()
+                            def apercu = genererApercu3D(photos, meubles)
+                            enregistrerApercu(apercu)
+                            
+
+                        case 'Mars':
+                            // Mars : prendre soin de soi
+                            def objectifsSante = definirObjectifsSante()
+                            def activites = trackerActivites(objectifsSante)
+                            def atteints = verifierObjectifs(objectifsSante, activites)
+                            
+
+                        case 'Avril':
+                            // Avril : soyez gentil
+                            def personne = recupererPersonne()
+                            envoyerMessagePositif(personne)
+                            
+
+                        case 'Mai':
+                            // Mai : faites quelque chose de nouveau
+                            envoyerNotification("Nouvelle activité pour ${params.NOM} en Mai : ${inscrireMarathon()}")
+                            envoyerNotification("Nouvelle activité pour ${params.NOM} en Mai : ${prendreCoursSalsa()}")
+                            envoyerNotification("Nouvelle activité pour ${params.NOM} en Mai : ${apprendreCrochet()}")
+                            envoyerNotification("Nouvelle activité pour ${params.NOM} en Mai : ${faireVoyageFamille()}")
+                            envoyerNotification("Nouvelle activité pour ${params.NOM} en Mai : ${prendreCoursEchecs()}")
+                            // Vérification à mi-parcours
+                            def pourcentageRealisation = calculerPourcentageRealisation(objectifsSante, activites)
+                            if (pourcentageRealisation < 50) {
+                                ajusterObjectifs(objectifsSante)
+                            }
+                            
+
+                        case 'Juin':
+                            // Juin : passez du temps avec le vôtre
+                            def evenement = planifierEvenement("Pique-nique", "12/06/2023", ["Maman", "Papa"])
+                            partagerPhotos(albumVacances(), ["Mamie", "Papi"])
+                            
+
+                        case 'Juillet':
+                            // Juillet : aller à un concert et danser
+                            def concerts = rechercherConcerts("Paris", "Juillet")
+                            def billets = acheterBillets(concerts[0])
+                            
+
+                        case 'Août':
+                            // Août : dormir sur la plage
+                            def spots = rechercherSpotsCamping("Plage du Prado", "15/08/2023")
+                            def meteo = consulterMeteo("Plage du Prado", "15/08/2023")
+                            
+
+                        case 'Septembre':
+                            // Septembre : découvrir le monde
+                            def ideesVoyage = rechercherIdeesVoyage("Asie")
+                            def itineraire = planifierItineraire(ideesVoyage[0])
+                            
+
+                        case 'Octobre':
+                            // Octobre : étudier
+                            envoyerNotification("Étude en Octobre pour ${params.NOM} : ${etudierDevOps()}")
+                            // Vérification à mi-parcours
+                            pourcentageRealisation = calculerPourcentageRealisation(objectifsSante, activites)
+                            if (pourcentageRealisation < 50) {
+                                ajusterObjectifs(objectifsSante)
+                            }
+                            
+
+                        case 'Novembre':
+                            // Novembre : apprendre un instrument
+                            def tutos = trouverTutoriels("Guitare")
+                            jouerTutoriel(tutos[0])
+                            enregistrerPerformance("Morceau 1")
+                            
+
+                        case 'Décembre':
+                            // Décembre : respirer consciemment
+                            lancerMeditationGuidee(10)
+                            // Ajoutez les étapes du pipeline pour le mois de Décembre
+                            
+
+                        default:
+                            echo "Mois non pris en charge"
+                    }
+                }
+            }
+        }
+    }
+}
+
+def calculerPourcentageRealisation(objectifs, activites) {
+    def totalObjectifs = objectifs.values().sum()
+    def totalActivites = activites.values().sum()
+    
+    if (totalObjectifs == 0) {
+        return 0
+    }
+
+    return (totalActivites / totalObjectifs) * 100
+}
+
+def ajusterObjectifs(objectifs) {
+    // Réduire les objectifs de moitié
+    objectifs.replaceAll { k, v -> v / 2 }
+    envoyerNotification("Les objectifs ont été ajustés à mi-parcours.")
+}
