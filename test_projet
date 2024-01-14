@@ -197,10 +197,11 @@ pipeline {
                         case 'Mai':
                             // Mai : faites quelque chose de nouveau
                             envoyerNotification("Nouvelle activité pour ${params.NOM} en Mai : ${inscrireMarathon()}")
-    envoyerNotification("Nouvelle activité pour ${params.NOM} en Mai : ${prendreCoursSalsa()}")
-    envoyerNotification("Nouvelle activité pour ${params.NOM} en Mai : ${apprendreCrochet()}")
-    envoyerNotification("Nouvelle activité pour ${params.NOM} en Mai : ${faireVoyageFamille()}")
-    envoyerNotification("Nouvelle activité pour ${params.NOM} en Mai : ${prendreCoursEchecs()}")                            break
+                            envoyerNotification("Nouvelle activité pour ${params.NOM} en Mai : ${prendreCoursSalsa()}")
+                            envoyerNotification("Nouvelle activité pour ${params.NOM} en Mai : ${apprendreCrochet()}")
+                            envoyerNotification("Nouvelle activité pour ${params.NOM} en Mai : ${faireVoyageFamille()}")
+                            envoyerNotification("Nouvelle activité pour ${params.NOM} en Mai : ${prendreCoursEchecs()}")                            
+                            break
 
                         case 'Juin':
                             // Juin : passez du temps avec le vôtre
