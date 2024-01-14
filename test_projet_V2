@@ -211,6 +211,7 @@ pipeline {
                             envoyerNotification("Nouvelle activité pour ${params.NOM} en Mai : ${prendreCoursEchecs()}")
                             // Vérification à mi-parcours
                             def objectifsMai = definirObjectifsSante()
+                            def activites = trackerActivites(objectifsMai)
                             def pourcentageRealisation = calculerPourcentageRealisation(objectifsMai, activites)
                             if (pourcentageRealisation < 50) {
                                 ajusterObjectifs(objectifsMai)
