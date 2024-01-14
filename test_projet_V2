@@ -40,6 +40,11 @@ def genererApercu3D(photos, meubles) {
     return "Apercu3D"
 }
 
+def enregistrerApercu(apercu) {
+    // Code factice pour enregistrer l'aperçu
+    println("Aperçu enregistré : $apercu")
+}
+
 def definirObjectifsSante() {
     // Code factice pour définir des objectifs santé
     return [sport: 2, meditation: 15]
@@ -174,28 +179,28 @@ pipeline {
                             def journalEntry = genererEntreeJournal("${params.NOM}")
                             enregistrerDonnees(journalEntry)
                             envoyerNotification("Nouvelle entrée pour ${params.NOM}")
-                            
+                            break
 
                         case 'Février':
                             // Février : redécorer la maison
                             def photos = telechargerPhotosMaison()
                             def meubles = selectionnerMeubles()
-                            genererApercu3D(photos, meubles)
-                            
-                            
+                            def apercu = genererApercu3D(photos, meubles)
+                            enregistrerApercu(apercu)
+                            break
 
                         case 'Mars':
                             // Mars : prendre soin de soi
                             def objectifsSante = definirObjectifsSante()
                             def activites = trackerActivites(objectifsSante)
                             def atteints = verifierObjectifs(objectifsSante, activites)
-                            
+                            break
 
                         case 'Avril':
                             // Avril : soyez gentil
                             def personne = recupererPersonne()
                             envoyerMessagePositif(personne)
-                            
+                            break
 
                         case 'Mai':
                             // Mai : faites quelque chose de nouveau
@@ -205,58 +210,60 @@ pipeline {
                             envoyerNotification("Nouvelle activité pour ${params.NOM} en Mai : ${faireVoyageFamille()}")
                             envoyerNotification("Nouvelle activité pour ${params.NOM} en Mai : ${prendreCoursEchecs()}")
                             // Vérification à mi-parcours
-                            def pourcentageRealisation = calculerPourcentageRealisation(objectifsSante, activites)
+                            def objectifsMai = definirObjectifsSante()
+                            def pourcentageRealisation = calculerPourcentageRealisation(objectifsMai, activites)
                             if (pourcentageRealisation < 50) {
-                                ajusterObjectifs(objectifsSante)
+                                ajusterObjectifs(objectifsMai)
                             }
-                            
+                            break
 
                         case 'Juin':
                             // Juin : passez du temps avec le vôtre
                             def evenement = planifierEvenement("Pique-nique", "12/06/2023", ["Maman", "Papa"])
                             partagerPhotos(albumVacances(), ["Mamie", "Papi"])
-                            
+                            break
 
                         case 'Juillet':
                             // Juillet : aller à un concert et danser
                             def concerts = rechercherConcerts("Paris", "Juillet")
                             def billets = acheterBillets(concerts[0])
-                            
+                            break
 
                         case 'Août':
                             // Août : dormir sur la plage
                             def spots = rechercherSpotsCamping("Plage du Prado", "15/08/2023")
                             def meteo = consulterMeteo("Plage du Prado", "15/08/2023")
-                            
+                            break
 
                         case 'Septembre':
                             // Septembre : découvrir le monde
                             def ideesVoyage = rechercherIdeesVoyage("Asie")
                             def itineraire = planifierItineraire(ideesVoyage[0])
-                            
+                            break
 
                         case 'Octobre':
                             // Octobre : étudier
                             envoyerNotification("Étude en Octobre pour ${params.NOM} : ${etudierDevOps()}")
                             // Vérification à mi-parcours
-                            pourcentageRealisation = calculerPourcentageRealisation(objectifsSante, activites)
+                            def objectifsOctobre = definirObjectifsSante()
+                            pourcentageRealisation = calculerPourcentageRealisation(objectifsOctobre, activites)
                             if (pourcentageRealisation < 50) {
-                                ajusterObjectifs(objectifsSante)
+                                ajusterObjectifs(objectifsOctobre)
                             }
-                            
+                            break
 
                         case 'Novembre':
                             // Novembre : apprendre un instrument
                             def tutos = trouverTutoriels("Guitare")
                             jouerTutoriel(tutos[0])
                             enregistrerPerformance("Morceau 1")
-                            
+                            break
 
                         case 'Décembre':
                             // Décembre : respirer consciemment
                             lancerMeditationGuidee(10)
                             // Ajoutez les étapes du pipeline pour le mois de Décembre
-                            
+                            break
 
                         default:
                             echo "Mois non pris en charge"
