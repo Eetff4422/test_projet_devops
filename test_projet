@@ -161,6 +161,27 @@ pipeline {
     }
 
     stages {
+        stage('Vérification à mi-parcours') {
+            when {
+                expression { return currentBuild.getBuildCauses('hudson.triggers.TimerTrigger$TimerTriggerCause') }
+            }
+            steps {
+                script {
+                    def mois = params.MOIS
+
+                    // Ajouter la vérification à mi-parcours ici
+                    def objectifsSante = definirObjectifsSante()
+                    def activites = trackerActivites(objectifsSante)
+                    def pourcentageRealisation = calculerPourcentageRealisation(objectifsSante, activites)
+
+                    if (pourcentageRealisation < 50) {
+                        // Si moins de 50% des objectifs sont réalisés, ajuster les objectifs à la baisse
+                        ajusterObjectifs(objectifsSante)
+                        envoyerNotification("Moins de 50% des objectifs réalisés. Objectifs ajustés.")
+                    }
+                }
+            }
+        }
         stage('Réaliser les souhaits') {
             steps {
                 script {
