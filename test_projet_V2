@@ -231,6 +231,7 @@ def calculerPourcentageRealisation(objectifs, activites) {
 }
 
 def ajusterObjectifs(objectifs) {
-    objectifs.replaceAll { k, v -> v / 2 }
+    objectifs.each { k, v -> objectifs[k] = v / 2 }
     envoyerNotification("Les objectifs ont été ajustés à mi-parcours.")
 }
+
