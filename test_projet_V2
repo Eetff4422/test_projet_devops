@@ -231,7 +231,10 @@ def calculerPourcentageRealisation(objectifs, activites) {
 }
 
 def ajusterObjectifs(objectifs) {
-    objectifs.each { k, v -> objectifs[k] = v / 2 }
+    def nouveauxObjectifs = [:]
+    objectifs.each { k, v -> nouveauxObjectifs[k] = v / 2 }
+    objectifs.clear()
+    objectifs.putAll(nouveauxObjectifs)
     envoyerNotification("Les objectifs ont été ajustés à mi-parcours.")
 }
 
