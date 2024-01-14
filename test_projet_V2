@@ -180,8 +180,8 @@ pipeline {
                             // Février : redécorer la maison
                             def photos = telechargerPhotosMaison()
                             def meubles = selectionnerMeubles()
-                            def apercu = genererApercu3D(photos, meubles)
-                            enregistrerApercu(apercu)
+                            genererApercu3D(photos, meubles)
+                            
                             
 
                         case 'Mars':
