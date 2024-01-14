@@ -211,9 +211,16 @@ pipeline {
         stage('Réaliser les souhaits') {
             steps {
                 script {
-                    def mois = params.MOIS
+                    def mois = params.MOIS.toLowerCase()
                     def objectifs = definirObjectifsSante()
                     def activites = trackerActivites(objectifs)
+                    
+                    // Vérifier si le mois est valide
+                    def moisValide = ["janvier", "fevrier", "mars", "avril", "mai", "juin", "juillet", "aout", "septembre", "octobre", "novembre", "decembre"].contains(mois)
+
+                    if (!moisValide) {
+                        error "Nom de mois non reconnu : ${params.MOIS}"
+                    }
 
                     // Appeler la fonction correspondante au mois
                     this."mois${mois}"(params, objectifs, activites)
