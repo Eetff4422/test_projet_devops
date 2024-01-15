@@ -223,7 +223,15 @@ pipeline {
                     //}
 
                     // Appeler la fonction correspondante au mois
-                    mois = mois[:4] + mois[4:].capitalize()
+                    // Fonction pour capitaliser la première lettre après le préfixe "mois"
+			def capitalizeMois(String mois) {
+			    // Vérifiez que le mois commence par "mois" et a une longueur suffisante pour capitaliser
+			    if (mois.startsWith("mois") && mois.length() > 4) {
+			        return mois[0..3] + mois[4..4].toUpperCase() + mois[5..-1]
+			    }
+			    return mois
+			}
+		mois = capitalizeMois(mois)
 		    this."mois${mois}"(params, objectifs, activites)
                 }
             }
