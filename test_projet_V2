@@ -227,11 +227,13 @@ pipeline {
             steps {
                 script {
                     // Initialiser le suivi
-                    def activites = trackerActivites(objectifs)
+                    
                     def objectifs = [
                         "ecrireJournal" : 31, // nb jours objectif
                         "lireLivre": 1  // nb livres objectif
                     ]
+                    
+                    def activites = trackerActivites(objectifs)
 
                     def progression = [
                         "ecrireJournal": 0, 
