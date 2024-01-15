@@ -224,7 +224,8 @@ pipeline {
         //     }
         // }
         stage('Janvier'){
-            script {
+            steps {
+                script {
 
                 if (params.MOIS == 'Janvier') {
 
@@ -259,6 +260,7 @@ pipeline {
                     
                 }
 
+            }
             }
         }
     }
