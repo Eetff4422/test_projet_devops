@@ -443,6 +443,7 @@ pipeline {
                     // Initialiser le suivi
                     
                     def objectifs = [
+                        "messagePositifEnvoye" : 4 // Nombre de message positif envoyé
                         "aiderUnePersonne" : 10, // Nombre de personne qu'on a aidé dans le mois (ce sera une aide quelconque)
                         "partagerUnTemoignageInspirant" : 5 // Nombre de fois qu'on a partagé un témoignage inspirant à une personne
                     ]
@@ -451,11 +452,13 @@ pipeline {
                     def activites = trackerActivites(objectifs)
 
                     def progression = [
+                        "messagePositifEnvoye" : 0
                         "aiderUnePersonne" : 0, 
                         "partagerUnTemoignageInspirant" : 0 
                     ]
 
                     def progression_after_15 = [
+                        "messagePositifEnvoye" : 2
                         "aiderUnePersonne" : 6, 
                         "partagerUnTemoignageInspirant" : 2  
                     ]
@@ -470,6 +473,7 @@ pipeline {
 
                             // Appeler fonction mois
                             moisAvril(params, objectifs, activites, progression)
+                            progression.messagePositifEnvoye = 1
                         }else if(params.JOUR >= '15'){
                             if (progression_after_15.aiderUnePersonne>=5){
                                 println "Tu es sur la bonne voie continue comme ça et tu atteindras ton objectif du mois."
@@ -498,16 +502,19 @@ pipeline {
                     
                     def objectifs = [
                         "activiteRealisee" : 3, // Nombre d'activités réalisées
+                        "nouvelleActiviteConsultee" : 2 // Nombre d'activités consultées
                     ]
                     
                     def activites = trackerActivites(objectifs)
 
                     def progression = [
                         "activiteRealisee" : 0,
+                        "nouvelleActiviteConsultee" : 0
                     ]
 
                     def progression_after_15 = [
-                        "activiteRealisee" : 2,  
+                        "activiteRealisee" : 2,
+                        "nouvelleActiviteConsultee" : 0 
                     ]
 
                     if (params.MOIS == 'Mai') {
@@ -516,16 +523,78 @@ pipeline {
                         if (params.JOUR == '1') {
 
                             progression.activiteRealisee = 1 
+                            progression.nouvelleActiviteConsultee = 1
 
                             // Appeler fonction mois
                             moisMai(params, objectifs, activites, progression)
                         }else if(params.JOUR >= '15'){
-                            if (progression_after_15.activiteRealisee>=2){
+                            if (progression_after_15.activiteRealisee>=2 && nouvelleActiviteConsultee==1){
                                 println "Tu es sur la bonne voie continue comme ça et tu atteindras ton objectif du mois."
-                            }else if(progression_after_15.activiteRealisee>=3){
+                            }else if(progression_after_15.activiteRealisee>=3 && nouvelleActiviteConsultee>=2){
                                 println "Félicitation, tu as atteint tous tes objectifs."
                             }else{
-                                objectifs.activiteRealisee = 2 
+                                objectifs.activiteRealisee = 2
+                                objectifs.nouvelleActiviteConsultee = 1 
+                                
+                                println "Malheureusement je vois que t'auras du mal à réaliser tes objectifs. Mais ne t'inquiète pas je les ai réajuster pour te permettre de les atteindre. Bonne chance"
+                            }
+                        }
+                        // Afficher progression
+                        println "Objectis à atteindre: $objectifs"    
+                        if (jourActuel < 15){
+                            println "Progression au $jourActuel mars : $progression"
+                        } else {
+                            println "Progression au $jourActuel mars : $progression_after_15"   
+                        }
+                        
+                    }
+                }
+            }
+        }
+        stage('Juin'){
+            steps{
+                script{
+                    // Initialiser le suivi
+                    
+                    def objectifs = [
+                        "activiteAvecProche" : 3, // Nombre d'activités réalisées avec ses proches
+                        "ablumPhotoPartagee" : 3,
+                        "invitationEnvoyee" : 2 
+                    ]
+                    
+                    def activites = trackerActivites(objectifs)
+
+                    def progression = [
+                        "activiteAvecProche" : 0, 
+                        "ablumPhotoPartagee" : 0,
+                        "invitationEnvoyee" : 0
+                    ]
+
+                    def progression_after_15 = [
+                        "activiteAvecProche" : 3, 
+                        "ablumPhotoPartagee" : 1,
+                        "invitationEnvoyee" : 0  
+                    ]
+
+                    if (params.MOIS == 'Juin') {
+                        // Calculer progression en fonction du jour
+                        def jourActuel = params.JOUR.toInteger()
+                        if (params.JOUR == '1') {
+
+                            progression.activiteAvecProche = 1 
+                            progression.ablumPhotoPartagee = 1 
+
+                            // Appeler fonction mois
+                            moisJuin(params, objectifs, activites, progression)
+                        }else if(params.JOUR >= '15'){
+                            if (progression_after_15.activiteAvecProche>=2 && progression_after_15.ablumPhotoPartagee >=2 && progression_after_15.invitationEnvoyee>=1){
+                                println "Tu es sur la bonne voie continue comme ça et tu atteindras ton objectif du mois."
+                            }else if(progression_after_15.activiteAvecProche>=3 && progression_after_15.ablumPhotoPartagee >=3 && progression_after_15.invitationEnvoyee>=2){
+                                println "Félicitation, tu as atteint tous tes objectifs."
+                            }else{
+                                objectifs.activiteAvecProche = 2 
+                                objectifs.ablumPhotoPartagee = 2
+                                objectifs.invitationEnvoyee = 1
                                 
                                 println "Malheureusement je vois que t'auras du mal à réaliser tes objectifs. Mais ne t'inquiète pas je les ai réajuster pour te permettre de les atteindre. Bonne chance"
                             }
