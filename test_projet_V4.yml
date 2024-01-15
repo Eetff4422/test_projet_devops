@@ -338,9 +338,9 @@ pipeline {
                                     objectifs = ["contacterUnProfessionnel": 0]
                                 }
                             }else{
-                                progression = progression.without("aperçu3D")
+                                progression = progression.remove("aperçu3D")
 
-                                objectifs = objectifs.without("aperçu3D") 
+                                objectifs = objectifs.remove("aperçu3D") 
                                 
                                 println "Malheureusement je vois que t'auras du mal à réaliser tes objectifs. Mais ne t'inquiète pas je les ai réajuster pour te permettre de les atteindre. Bonne chance"
                             }
@@ -403,9 +403,9 @@ pipeline {
                                     if (progression_after_15.préparerUnRepasSain>=10){
                                         println "Tu es sur la bonne voie continue de manger sainement et de faire de l'exercice et tu atteindras ton objectif du mois."
                                     }else{
-                                        progression = progression.without("préparerUnRepasSain")
+                                        progression = progression.remove("préparerUnRepasSain")
 
-                                        objectifs = objectifs.without("préparerUnRepasSain") 
+                                        objectifs = objectifs.remove("préparerUnRepasSain") 
                                         println "Malheureusement je vois que t'auras du mal à réaliser l'un de tes objectifs. Mais ne t'inquiète pas je les ai réajuster pour te permettre de les atteindre. Bonne chance"
                                     }
                                 }
