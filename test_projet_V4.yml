@@ -355,71 +355,7 @@ pipeline {
                 }
             }
         }
-        stage('Mars'){
-            steps{
-                script{
-                    // Initialiser le suivi
-                    
-                    def objectifs = [
-                        // 1: tâche effectuée 0: tâche non effectuée
-                        "faireDuSport" : 8, //Faire du sport chaque week-end (samedi et dimanche) - 8 correspond au nombre de jours de séance dans un mois 
-                        "préparerUnRepasSain": 20, // Préparer un repas sain au moins 20 jours dans le mois
-                        "nombreDeNotif": 31 // Une notification par jour 
-                    ]
-                    
-                    def activites = trackerActivites(objectifs)
-
-                    def progression = [
-                        "faireDuSport" : 0, 
-                        "préparerUnRepasSain": 1, 
-                        "nombreDeNotif": 1 
-                    ]
-
-                    def progression_after_15 = [
-                        "faireDuSport" : 4, 
-                        "préparerUnRepasSain": 8, 
-                        "nombreDeNotif": 15 
-                    ]
-
-                    if (params.MOIS == 'Mars') {
-                        // Calculer progression en fonction du jour
-                        def jourActuel = params.JOUR.toInteger()
-                        if (params.JOUR == '1') {
-
-                            progression.photosMaison = 1 
-
-                            // Appeler fonction mois
-                            moisMars(params, objectifs, activites, progression)
-                        }else if(params.JOUR >= '15'){
-                            if (progression_after_15.photosMaison>=1){
-                                if (progression_after_15.photosMaison== 1 && progression_after_15.choixMeubles== 1 && progression_after_15.photosMaison== 0){
-                                    println "Tu es sur la bonne voie continue comme ça, il te manque que la visualisation 3D de ta maison avec les nouveaux meubles sélectionnés et tu atteindras ton objectif du mois."
-                                }else if (progression_after_15.photosMaison== 1 && progression_after_15.choixMeubles== 0 && progression_after_15.photosMaison== 0){
-                                    println "Tu as pris un peu de retard mais n'abandonne pas tu peux encore y arriver, il te manque que la sélection de nouveaux meubles ainsi que la visualisation 3D de ta maison avec les nouveaux meubles sélectionnés et tu atteindras ton objectif du mois."
-                                }else if (progression_after_15.photosMaison== 1 && progression_after_15.choixMeubles== 1 && progression_after_15.photosMaison== 1){
-                                    println "Félicitations tu as atteint ton objectif du mois. Ta motivation a été exemplaire, par conséquent nous te proposons un nouvel objectif. Bonne chance"
-                                    progression_after_15 = ["contacterUnProfessionnel": 0]
-                                    objectifs = ["contacterUnProfessionnel": 0]
-                                }
-                            }else{
-                                progression = progression.without("aperçu3D")
-
-                                objectifs = objectifs.without("aperçu3D") 
-                                
-                                println "Malheureusement je vois que t'auras du mal à réaliser tes objectifs. Mais ne t'inquiète pas je les ai réajuster pour te permettre de les atteindre. Bonne chance"
-                            }
-                        }
-                        // Afficher progression    
-                        if (jourActuel < 15){
-                            println "Progression au $jourActuel mars : $progression"
-                        } else {
-                            println "Progression au $jourActuel mars : $progression_after_15"   
-                        }
-                        
-                    }
-                }
-            }
-        }
+        
         stage('Avril'){
             steps{
                 script{
