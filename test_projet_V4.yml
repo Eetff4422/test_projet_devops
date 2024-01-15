@@ -529,9 +529,9 @@ pipeline {
                             // Appeler fonction mois
                             moisMai(params, objectifs, activites, progression)
                         }else if(params.JOUR >= '15'){
-                            if (progression_after_15.activiteRealisee>=2 && nouvelleActiviteConsultee==1){
+                            if (progression_after_15.activiteRealisee>=2 && progression_after_15.nouvelleActiviteConsultee==1){
                                 println "Tu es sur la bonne voie continue comme ça et tu atteindras ton objectif du mois."
-                            }else if(progression_after_15.activiteRealisee>=3 && nouvelleActiviteConsultee>=2){
+                            }else if(progression_after_15.activiteRealisee>=3 && progression_after_15.nouvelleActiviteConsultee>=2){
                                 println "Félicitation, tu as atteint tous tes objectifs."
                             }else{
                                 objectifs.activiteRealisee = 2
