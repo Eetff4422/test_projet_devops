@@ -237,8 +237,8 @@ pipeline {
     			'novembre': moisNovembre,
     			'decembre': moisDecembre
     			}
-    		if mois_normalise in fonctions_mois:
-    			fonctions_mois[mois_normalise](params, objectifs, activites)
+    		if mois in fonctions_mois:
+    			fonctions_mois[mois](params, objectifs, activites)
 		else:
     			print("Mois non reconnu.")
                     
