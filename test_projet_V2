@@ -211,7 +211,7 @@ pipeline {
         stage('Réaliser les souhaits') {
             steps {
                 script {
-                    def mois = params.MOIS
+                    def mois = params.MOIS.casefold()
                     def objectifs = definirObjectifsSante()
                     def activites = trackerActivites(objectifs)
                     
@@ -223,7 +223,25 @@ pipeline {
                     //}
 
                     // Appeler la fonction correspondante au mois
-                    this."mois${mois}"(params, objectifs, activites)
+                    fonctions_mois = {
+    			'janvier': moisJanvier,
+    			'fevrier': moisFevrier,
+    			'mars': moisMars,
+    			'avril': moisAvril,
+    			'mai' : moisMai,
+    			'juin': moisJuin,
+    			'juillet': moisJuillet,
+    			'aout': moisAout,
+    			'septembre' : moisSeptembre,
+    			'octobre': moisOctobre,
+    			'novembre': moisNovembre,
+    			'decembre': moisDecembre
+    			}
+    		if mois_normalise in fonctions_mois:
+    			fonctions_mois[mois_normalise](params, objectifs, activites)
+		else:
+    			print("Mois non reconnu.")
+                    
                 }
             }
         }
