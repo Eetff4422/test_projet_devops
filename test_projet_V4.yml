@@ -280,7 +280,7 @@ pipeline {
                             }
                         }
                         // Afficher progression
-                        println "Objectis à atteindre: $objectifs"    
+                        println "Objectifs à atteindre: $objectifs"    
                         if (jourActuel < 15){
                             println "Progression au $jourActuel janvier : $progression"
                         } else {
@@ -346,7 +346,7 @@ pipeline {
                             }
                         }
                         // Afficher progression
-                        println "Objectis à atteindre: $objectifs"    
+                        println "Objectifs à atteindre: $objectifs"    
                         if (jourActuel < 15){
                             println "Progression au $jourActuel fevrier : $progression"
                         } else {
@@ -404,6 +404,7 @@ pipeline {
                                         println "Tu es sur la bonne voie continue de manger sainement et de faire de l'exercice et tu atteindras ton objectif du mois."
                                     }else{
                                         progression = progression.remove("préparerUnRepasSain")
+                                        progression_after_15 = progression_after_15.remove("préparerUnRepasSain")
 
                                         objectifs = objectifs.remove("préparerUnRepasSain") 
                                         println "Malheureusement je vois que t'auras du mal à réaliser l'un de tes objectifs. Mais ne t'inquiète pas je les ai réajuster pour te permettre de les atteindre. Bonne chance"
@@ -426,7 +427,7 @@ pipeline {
                             }
                         }
                         // Afficher progression
-                        println "Objectis à atteindre: $objectifs"    
+                        println "Objectifs à atteindre: $objectifs"    
                         if (jourActuel < 15){
                             println "Progression au $jourActuel mars : $progression"
                         } else {
@@ -484,7 +485,7 @@ pipeline {
                             }
                         }
                         // Afficher progression
-                        println "Objectis à atteindre: $objectifs"    
+                        println "Objectifs à atteindre: $objectifs"    
                         if (jourActuel < 15){
                             println "Progression au $jourActuel mars : $progression"
                         } else {
@@ -540,7 +541,7 @@ pipeline {
                             }
                         }
                         // Afficher progression
-                        println "Objectis à atteindre: $objectifs"    
+                        println "Objectifs à atteindre: $objectifs"    
                         if (jourActuel < 15){
                             println "Progression au $jourActuel mars : $progression"
                         } else {
@@ -600,7 +601,7 @@ pipeline {
                             }
                         }
                         // Afficher progression
-                        println "Objectis à atteindre: $objectifs"    
+                        println "Objectifs à atteindre: $objectifs"    
                         if (jourActuel < 15){
                             println "Progression au $jourActuel mars : $progression"
                         } else {
