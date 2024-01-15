@@ -204,9 +204,9 @@ pipeline {
     agent any
 
     parameters {
-        string(name: 'MOIS', defaultValue: 'Janvier', description: 'Mois à exécuter')
+        string(name: 'MOIS', defaultValue: 'Janvier', choices: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet','Aout', 'Septembre', 'Octobre','Novembre', 'Decembre'], description: 'Choisissez le mois')
         string(name: 'NOM', defaultValue: 'Jean', description: 'Entrez votre nom')
-        string(name: 'JOUR', defaultValue: '1', description: 'Quel est la date du jour ?')
+        string(name: 'JOUR', defaultValue: '1', choices: ['1', '2', '3', '4', '5', '6', '7','8', '9', '10','11', '12','13', '14', '15', '16', '17', '18', '19','20', '21', '22','23', '24','25','26','27','28','29','30','31'], description: 'Quel est la date du jour ?')
     }
 
     stages {
