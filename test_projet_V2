@@ -242,7 +242,7 @@ pipeline {
 
                     def progression_after_15 = [
                         "ecrireJournal" : 15,
-                        "lireLivre" : 1
+                        "lireLivre" : 0
                     ]
 
                     if (params.MOIS == 'Janvier') {
@@ -270,7 +270,12 @@ pipeline {
                             }
                         }
                         // Afficher progression    
-                        println "Progression au $jourActuel janvier : $progression"
+                        if (jourActuel < 15){
+                            println "Progression au $jourActuel janvier : $progression"
+                        } else {
+                            println "Progression au $jourActuel janvier : $progression_after_15"   
+                        }
+                        
                     }
                 }
             }
