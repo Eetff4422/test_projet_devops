@@ -241,7 +241,7 @@ pipeline {
                     ]
 
                     def progression_after_15 = [
-                        "ecrireJournal" : 10,
+                        "ecrireJournal" : 15,
                         "lireLivre" : 1
                     ]
 
@@ -265,7 +265,8 @@ pipeline {
                             }else{
                                 objectifs.ecrireJournal = 15 
                                 objectifs.lireLivre = 1 
-                                println "Malheureusement je vois que t'auras du mal à réaliser tes objectifs. Mais ne t'intièque pas je les ai réajuster pour te permettre de les atteindre. Bonne chance"
+                                progression.ecrireJournal = 5
+                                println "Malheureusement je vois que t'auras du mal à réaliser tes objectifs. Mais ne t'inquiète pas je les ai réajuster pour te permettre de les atteindre. Bonne chance"
                             }
                         }
                         // Afficher progression    
