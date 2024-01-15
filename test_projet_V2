@@ -216,11 +216,11 @@ pipeline {
                     def activites = trackerActivites(objectifs)
                     
                     // Vérifier si le mois est valide
-                    def moisValide = ["janvier", "fevrier", "mars", "avril", "mai", "juin", "juillet", "aout", "septembre", "octobre", "novembre", "decembre"].contains(mois)
+                    //def moisValide = ["janvier", "fevrier", "mars", "avril", "mai", "juin", "juillet", "aout", "septembre", "octobre", "novembre", "decembre"].contains(mois)
 
-                    if (!moisValide) {
-                        error "Nom de mois non reconnu : ${params.MOIS}"
-                    }
+                    //if (!moisValide) {
+                      //  error "Nom de mois non reconnu : ${params.MOIS}"
+                    //}
 
                     // Appeler la fonction correspondante au mois
                     this."mois${mois}"(params, objectifs, activites)
