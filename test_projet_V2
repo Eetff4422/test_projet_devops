@@ -211,7 +211,7 @@ pipeline {
         stage('Réaliser les souhaits') {
             steps {
                 script {
-                    def mois = params.MOIS.toLowerCase()
+                    def mois = params.MOIS
                     def objectifs = definirObjectifsSante()
                     def activites = trackerActivites(objectifs)
                     
