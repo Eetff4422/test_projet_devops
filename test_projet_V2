@@ -224,8 +224,7 @@ pipeline {
 
                     // Appeler la fonction correspondante au mois
                     mois = mois[:4] + mois[4:].capitalize()
-		    
-                    
+		    this."mois${mois}"(params, objectifs, activites)
                 }
             }
         }
