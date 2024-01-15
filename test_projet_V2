@@ -198,42 +198,67 @@ def moisDecembre(params, objectifs, activites) {
     lancerMeditationGuidee(10)
     // Ajouter d'autres étapes pour le mois de Décembre si nécessaire
 }
-def capitalizeMois(String mois) {
-			    // Vérifiez que le mois commence par "mois" et a une longueur suffisante pour capitaliser
-			    if (mois.startsWith("mois") && mois.length() > 4) {
-			        return mois[0..3] + mois[4..4].toUpperCase() + mois[5..-1]
-			    }
-			    return mois
-			}
 
 pipeline {
     agent any
 
     parameters {
-        string(name: 'MOIS', defaultValue: 'Janvier', description: 'Mois à exécuter')
+        string(name: 'MOIS', defaultValue: 'Janvier', choices:['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Aout','Septembre','Octobre','Novembre','Décembre'], description: 'Mois à exécuter')
         string(name: 'NOM', defaultValue: 'Jean', description: 'Entrez votre nom')
+        choice(name:'JOUR', choices:['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'])
     }
 
     stages {
-        stage('Réaliser les souhaits') {
-            steps {
-                script {
-                    def mois = params.MOIS.casefold()
-                    def objectifs = definirObjectifsSante()
-                    def activites = trackerActivites(objectifs)
+        // stage('Réaliser les souhaits') {
+        //     steps {
+        //         script {
+        //             def mois = params.MOIS
+        //             def objectifs = definirObjectifsSante()
+        //             def activites = trackerActivites(objectifs)
                     
-                    // Vérifier si le mois est valide
-                    //def moisValide = ["janvier", "fevrier", "mars", "avril", "mai", "juin", "juillet", "aout", "septembre", "octobre", "novembre", "decembre"].contains(mois)
+                    
 
-                    //if (!moisValide) {
-                      //  error "Nom de mois non reconnu : ${params.MOIS}"
-                    //}
+        //             // Appeler la fonction correspondante au mois
+        //             this."mois${mois}"(params, objectifs, activites)
+        //         }
+        //     }
+        // }
+        stage('Janvier'){
+            script {
 
-                    // Appeler la fonction correspondante au mois
-                    // Fonction pour capitaliser la première lettre après le préfixe "mois"
-		mois = capitalizeMois(mois)
-		    this."mois${mois}"(params, objectifs, activites)
+                if (params.MOIS == 'Janvier') {
+
+                    if (params.JOUR == '1') {
+                    
+                    // Initialiser le suivi
+                    def objectifs = [
+                        "ecrireJournal" : 31, // nb jours objetif
+                        "lireLivre": 1  // nb livres objectif
+                    ]
+                    
+                    def progression = [
+                        "ecrireJournal": 0, 
+                        "lireLivre": 0
+                    ]
+                    
+                    }
+                    
+                    // Calculer progression en fonction du jour
+                    def jourActuel = params.JOUR.toInteger()
+                    
+                    progression.ecrireJournal = jourActuel 
+                    if (jourActuel >= 10) { 
+                    progression.lireLivre = 1 
+                    }
+                    
+                    // Afficher progression    
+                    println "Progression au $jourActuel janvier : $progression"
+                    
+                    // Appeler fonction mois
+                    moisJanvier(params, objectifs, progression)
+                    
                 }
+
             }
         }
     }
