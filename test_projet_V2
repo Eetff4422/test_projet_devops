@@ -126,14 +126,14 @@ def etudierDevOps() {
     return "Cours de DevOps étudié avec succès"
 }
 
-def moisJanvier(params, objectifs, activites) {
+def moisJanvier(params, objectifs, activites, progression) {
     genererEntreeJournal("${params.NOM}").with {
         enregistrerDonnees(it)
         envoyerNotification("Nouvelle entrée pour ${params.NOM}")
     }
 }
 
-def moisFevrier(params, objectifs, activites) {
+def moisFevrier(params, objectifs, activites, progression) {
     selectionnerMeubles().with {
         def photos = telechargerPhotosMaison()
         genererApercu3D(photos, this).with {
@@ -142,17 +142,17 @@ def moisFevrier(params, objectifs, activites) {
     }
 }
 
-def moisMars(params, objectifs, activites) {
+def moisMars(params, objectifs, activites, progression) {
     verifierObjectifs(objectifs, activites)
 }
 
-def moisAvril(params, objectifs, activites) {
+def moisAvril(params, objectifs, activites, progression) {
     recupererPersonne().with {
         envoyerMessagePositif(it)
     }
 }
 
-def moisMai(params, objectifs, activites) {
+def moisMai(params, objectifs, activites, progression) {
     [inscrireMarathon(), prendreCoursSalsa(), apprendreCrochet(), faireVoyageFamille(), prendreCoursEchecs()].each {
         envoyerNotification("Nouvelle activité pour ${params.NOM} en Mai : $it")
     }
@@ -161,40 +161,40 @@ def moisMai(params, objectifs, activites) {
     }
 }
 
-def moisJuin(params, objectifs, activites) {
+def moisJuin(params, objectifs, activites, progression) {
     planifierEvenement("Pique-nique", "12/06/2023", ["Maman", "Papa"])
     partagerPhotos(albumVacances(), ["Mamie", "Papi"])
 }
 
-def moisJuillet(params, objectifs, activites) {
+def moisJuillet(params, objectifs, activites, progression) {
     acheterBillets(rechercherConcerts("Paris", "Juillet")[0]).with {
         envoyerNotification("Billets achetés pour le concert : $it")
     }
 }
 
-def moisAout(params, objectifs, activites) {
+def moisAout(params, objectifs, activites, progression) {
     [rechercherSpotsCamping("Plage du Prado", "15/08/2023"), consulterMeteo("Plage du Prado", "15/08/2023")].each {
         // Traiter les résultats si nécessaire
     }
 }
 
-def moisSeptembre(params, objectifs, activites) {
+def moisSeptembre(params, objectifs, activites, progression) {
     planifierItineraire(rechercherIdeesVoyage("Asie")[0])
 }
 
-def moisOctobre(params, objectifs, activites) {
+def moisOctobre(params, objectifs, activites, progression) {
     envoyerNotification("Étude en Octobre pour ${params.NOM} : ${etudierDevOps()}")
     if (calculerPourcentageRealisation(objectifs, activites) < 50) {
         ajusterObjectifs(objectifs)
     }
 }
 
-def moisNovembre(params, objectifs, activites) {
+def moisNovembre(params, objectifs, activites, progression) {
     jouerTutoriel(trouverTutoriels("Guitare")[0])
     enregistrerPerformance("Morceau 1")
 }
 
-def moisDecembre(params, objectifs, activites) {
+def moisDecembre(params, objectifs, activites, progression) {
     lancerMeditationGuidee(10)
     // Ajouter d'autres étapes pour le mois de Décembre si nécessaire
 }
@@ -219,47 +219,61 @@ pipeline {
                     
 
         //             // Appeler la fonction correspondante au mois
-        //             this."mois${mois}"(params, objectifs, activites)
+        //             this."mois${mois}"(params, objectifs, activites, progression)
         //         }
         //     }
         // }
         stage('Janvier') {
-    steps {
-        script {
-            // Initialiser le suivi
-            def objectifs = [
-                "ecrireJournal" : 31, // nb jours objectif
-                "lireLivre": 1  // nb livres objectif
-            ]
+            steps {
+                script {
+                    // Initialiser le suivi
+                    def activites = trackerActivites(objectifs)
+                    def objectifs = [
+                        "ecrireJournal" : 31, // nb jours objectif
+                        "lireLivre": 1  // nb livres objectif
+                    ]
 
-            def progression = [
-                "ecrireJournal": 0, 
-                "lireLivre": 0
-            ]
+                    def progression = [
+                        "ecrireJournal": 0, 
+                        "lireLivre": 0
+                    ]
 
-            if (params.MOIS == 'Janvier') {
-                if (params.JOUR == '1') {
-                    // Calculer progression en fonction du jour
-                    def jourActuel = params.JOUR.toInteger()
+                    def progression_after_15 = [
+                        "ecrireJournal" : 10,
+                        "lireLivre" : 1
+                    ]
 
-                    progression.ecrireJournal = jourActuel 
-                    if (jourActuel >= 10) { 
-                        progression.lireLivre = 1 
+                    if (params.MOIS == 'Janvier') {
+                        // Calculer progression en fonction du jour
+                        def jourActuel = params.JOUR.toInteger()
+                        if (params.JOUR == '1') {
+
+                            progression.ecrireJournal = jourActuel 
+
+                            // Appeler fonction mois
+                            moisJanvier(params, objectifs, activites, progression)
+                        }else if(params.JOUR >= '15'){
+                            if (progression_after_15.ecrireJournal>=15){
+                                if (progression_after_15.lireLivre == 1 ){
+                                    println "Tu es sur la bonne voie, continue de remplir quotidiennement ton journal et tu atteindras ton objectif du mois."
+                                }else{
+                                    println "Tu es sur la bonne voie mais n'oublie pas de lire $objectifs.lireLivre livre pour atteindre tous tes objectifs."
+                                }
+                                
+                            }else{
+                                objectifs.ecrireJournal = 15 
+                                objectifs.lireLivre = 1 
+                                println "Malheureusement je vois que t'auras du mal à réaliser tes objectifs. Mais ne t'intièque pas je les ai réajuster pour te permettre de les atteindre. Bonne chance"
+                            }
+                        }
+                        // Afficher progression    
+                        println "Progression au $jourActuel janvier : $progression"
                     }
-
-                    // Afficher progression    
-                    println "Progression au $jourActuel janvier : $progression"
-
-                    // Appeler fonction mois
-                    moisJanvier(params, objectifs, progression)
                 }
             }
         }
     }
 }
-
-        }
-    }
 
 def calculerPourcentageRealisation(objectifs, activites) {
     def totalObjectifs = objectifs.values().sum()
