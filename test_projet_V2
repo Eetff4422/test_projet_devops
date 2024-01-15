@@ -223,48 +223,43 @@ pipeline {
         //         }
         //     }
         // }
-        stage('Janvier'){
-            steps {
-                script {
+        stage('Janvier') {
+    steps {
+        script {
+            // Initialiser le suivi
+            def objectifs = [
+                "ecrireJournal" : 31, // nb jours objectif
+                "lireLivre": 1  // nb livres objectif
+            ]
 
-                if (params.MOIS == 'Janvier') {
+            def progression = [
+                "ecrireJournal": 0, 
+                "lireLivre": 0
+            ]
 
-                    if (params.JOUR == '1') {
-                    
-                    // Initialiser le suivi
-                    def objectifs = [
-                        "ecrireJournal" : 31, // nb jours objetif
-                        "lireLivre": 1  // nb livres objectif
-                    ]
-                    
-                    def progression = [
-                        "ecrireJournal": 0, 
-                        "lireLivre": 0
-                    ]
-                    
-                    }
-                    
+            if (params.MOIS == 'Janvier') {
+                if (params.JOUR == '1') {
                     // Calculer progression en fonction du jour
                     def jourActuel = params.JOUR.toInteger()
-                    
+
                     progression.ecrireJournal = jourActuel 
                     if (jourActuel >= 10) { 
-                    progression.lireLivre = 1 
+                        progression.lireLivre = 1 
                     }
-                    
+
                     // Afficher progression    
                     println "Progression au $jourActuel janvier : $progression"
-                    
+
                     // Appeler fonction mois
                     moisJanvier(params, objectifs, progression)
-                    
                 }
-
-            }
             }
         }
     }
 }
+
+        }
+    }
 
 def calculerPourcentageRealisation(objectifs, activites) {
     def totalObjectifs = objectifs.values().sum()
