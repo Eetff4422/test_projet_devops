@@ -223,24 +223,8 @@ pipeline {
                     //}
 
                     // Appeler la fonction correspondante au mois
-                    fonctions_mois = {
-    			'janvier': moisJanvier,
-    			'fevrier': moisFevrier,
-    			'mars': moisMars,
-    			'avril': moisAvril,
-    			'mai' : moisMai,
-    			'juin': moisJuin,
-    			'juillet': moisJuillet,
-    			'aout': moisAout,
-    			'septembre' : moisSeptembre,
-    			'octobre': moisOctobre,
-    			'novembre': moisNovembre,
-    			'decembre': moisDecembre
-    			}
-    		if mois in fonctions_mois:
-    			fonctions_mois[mois](params, objectifs, activites)
-		else:
-    			print("Mois non reconnu.")
+                    mois = mois[:4] + mois[4:].capitalize()
+		    
                     
                 }
             }
