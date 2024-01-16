@@ -1,20 +1,19 @@
-def planifierEvenement(nom, date, invites) {
-    println("Évènement planifié : $nom le $date avec les invités : $invites")
-}
-def albumVacances() {
-    return "AlbumVacances"
-}
-def prendrePhoto() {
-    println "Photos prises"
-}
-def partagerPhotos(album, personnes) {
-    println("Photos de l'album $album partagées avec : $personnes")
-}
-def trackerActivites(objectifs) {
-    return [sport: 1, meditation: 7] 
-}
-def moisJuin(params, objectifs, activites, progression){
-    // Initialiser le suivi
+                    def planifierEvenement(nom, date, invites) {
+                        println("Évènement planifié : $nom le $date avec les invités : $invites")
+                    }
+                    def albumVacances() {
+                        return "AlbumVacances"
+                    }
+                    def prendrePhoto() {
+                        println "Photos prises"
+                    }
+                    def partagerPhotos(album, personnes) {
+                        println("Photos de l'album $album partagées avec : $personnes")
+                    }
+                    def trackerActivites(objectifs) {
+                        return [sport: 1, meditation: 7] 
+                    }
+
                     
                     def objectifs = [
                         "activiteAvecProche" : 3, // Nombre d'activités réalisées avec ses proches
@@ -70,4 +69,3 @@ def moisJuin(params, objectifs, activites, progression){
                         }
                         
                     }
-}
