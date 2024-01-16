@@ -15,7 +15,8 @@ pipeline {
             steps {
                 script {
                     def jenkinsfilePath = "Janvier.groovy"
-                    load jenkinsfilePath
+                    tt = load jenkinsfilePath
+                    tt(params)
                 }
             }
         }
