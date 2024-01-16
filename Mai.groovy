@@ -1,30 +1,29 @@
-def inscrireMarathon() {
-    return "Inscription au marathon réussie"
-}
+                    def inscrireMarathon() {
+                        return "Inscription au marathon réussie"
+                    }
+                    
+                    def prendreCoursSalsa() {
+                        return "Cours de salsa commencés"
+                    }
+                    
+                    def apprendreCrochet() {
+                        return "Cours de crochet commencés"
+                    }
+                    
+                    def faireVoyageFamille() {
+                        return "Voyage en famille planifié"
+                    }
+                    def trackerActivites(objectifs) {
+                        return [sport: 1, meditation: 7] 
+                    }
+                    def prendreCoursEchecs() {
+                        return "Cours d'échecs commencés"
+                    }
+                    def envoyerNotification(message) {
+                        println("Notification envoyée : $message")
+                    }
 
-def prendreCoursSalsa() {
-    return "Cours de salsa commencés"
-}
 
-def apprendreCrochet() {
-    return "Cours de crochet commencés"
-}
-
-def faireVoyageFamille() {
-    return "Voyage en famille planifié"
-}
-def trackerActivites(objectifs) {
-    return [sport: 1, meditation: 7] 
-}
-def prendreCoursEchecs() {
-    return "Cours d'échecs commencés"
-}
-def envoyerNotification(message) {
-    println("Notification envoyée : $message")
-}
-
-def moisMai(params, objectifs, activites, progression){
-    // Initialiser le suivi
                     
                     def objectifs = [
                         "activiteRealisee" : 3, // Nombre d'activités réalisées
@@ -76,4 +75,3 @@ def moisMai(params, objectifs, activites, progression){
                         }
                         
                     }
-}
