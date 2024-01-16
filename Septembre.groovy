@@ -1,16 +1,15 @@
-def planifierItineraire(ideeVoyage) {
-    println("Itinéraire planifié pour l'idée de voyage : $ideeVoyage")
-    return "ItinérairePlanifié"
-}
-def rechercherIdeesVoyage(continent) {
-    println "Continent : $continent"
-    return ["Visiter Tokyo", "Visiter Seoul", "Visiter Pekin"]
-}
-def trackerActivites(objectifs) {
-    return [sport: 1, meditation: 7] 
-}
-def moisSeptembre(params, objectifs, activites, progression){
-    // Initialiser le suivi
+                def planifierItineraire(ideeVoyage) {
+                    println("Itinéraire planifié pour l'idée de voyage : $ideeVoyage")
+                    return "ItinérairePlanifié"
+                }
+                def rechercherIdeesVoyage(continent) {
+                    println "Continent : $continent"
+                    return ["Visiter Tokyo", "Visiter Seoul", "Visiter Pekin"]
+                }
+                def trackerActivites(objectifs) {
+                    return [sport: 1, meditation: 7] 
+                }
+          
                     
                     def objectifs = [
                         "rechercherSpotPourCamper" : 3, 
@@ -77,4 +76,3 @@ def moisSeptembre(params, objectifs, activites, progression){
                         }
                         
                     }
-}
