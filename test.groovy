@@ -1,5 +1,3 @@
-load('Janvier.groovy')
-
 pipeline {
     agent any
 
