@@ -1,9 +1,4 @@
-@Grapes([
-  @Grab(group='test_projet_devops
-', module='', version='main', classifier='Janvier') 
-])
 
-import test_projet_devops.Janvier
 
 pipeline {
     agent any
@@ -21,7 +16,8 @@ pipeline {
             }
             steps {
                 script {
-                    Janvier.moisJanvier(params)
+                    def script1 = load('Janvier.groovy')
+                    script1.moisJanvier(params)
                 }
             }
         }
