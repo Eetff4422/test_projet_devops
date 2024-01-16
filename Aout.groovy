@@ -16,7 +16,7 @@ def envoyerNotification(message) {
 def trackerActivites(objectifs) {
     return [sport: 1, meditation: 7] 
 }
-def moisAout(params, objectifs, activites, progression){
+def moisAout(params){
     // Initialiser le suivi
                     
                     def objectifs = [
