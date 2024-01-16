@@ -1,31 +1,30 @@
-def trouverCours(domaine) {
-    println "Le domaine choisi est $domaine"
-    println "Voici une liste de cours lié au domaine choisi : "
-    if (domaine == 'web'){
-        println "1.Comprendre le web (6H)\n2.Apprenez à programmer en JavaScript (12H)\n3.Créez votre site web avec HTML5 et CSS3 (15H)"
+                    def trouverCours(domaine) {
+                        println "Le domaine choisi est $domaine"
+                        println "Voici une liste de cours lié au domaine choisi : "
+                        if (domaine == 'web'){
+                            println "1.Comprendre le web (6H)\n2.Apprenez à programmer en JavaScript (12H)\n3.Créez votre site web avec HTML5 et CSS3 (15H)"
+                    
+                            return ["1.Comprendre le web (6H)", "2.Apprenez à programmez en JavaScript (12H)","3.Créez votre site web avec HTML5 et CSS3 (15H)" ]
+                        }else{
+                            println "Aucun cours trouvé"
+                        }
+                        
+                        
+                    }
+                    def trackerActivites(objectifs) {
+                        return [sport: 1, meditation: 7] 
+                    }
+                    def progressionCours(duree){
+                        def dureeFaite = 500 // en minute
+                        def pourcentageRealisation = (dureeFaite*100) / (duree*60)
+                        return pourcentageRealisation
+                    }
+                    
+                    def envoyerNotification(message) {
+                        println("Notification envoyée : $message")
+                    }
 
-        return ["1.Comprendre le web (6H)", "2.Apprenez à programmez en JavaScript (12H)","3.Créez votre site web avec HTML5 et CSS3 (15H)" ]
-    }else{
-        println "Aucun cours trouvé"
-    }
-    
-    
-}
-def trackerActivites(objectifs) {
-    return [sport: 1, meditation: 7] 
-}
-def progressionCours(duree){
-    def dureeFaite = 500 // en minute
-    def pourcentageRealisation = (dureeFaite*100) / (duree*60)
-    return pourcentageRealisation
-}
 
-def envoyerNotification(message) {
-    println("Notification envoyée : $message")
-}
-
-def moisOctobre(params, objectifs, activites, progression){
-    // Initialiser le suivi
                     
                     def objectifs = [
                         "coursTrouves" : 4, // Nombre de cours minimum à choisir 
@@ -103,4 +102,3 @@ def moisOctobre(params, objectifs, activites, progression){
                         }
                         
                     }
-}
