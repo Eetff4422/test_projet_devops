@@ -14,10 +14,8 @@ pipeline {
             }
             steps {
                 script {
-                    def branchName = env.BRANCH_NAME ?: 'main'
-                    def jenkinsfilePath = "${branchName}/Janvier.groovy"
+                    def jenkinsfilePath = "Janvier.groovy"
                     load jenkinsfilePath
-                    moisJanvier(params)
                 }
             }
         }
