@@ -12,7 +12,7 @@ def envoyerNotification(message) {
     println("Notification envoyée : $message")
 }
 
-def moisJanvier(params, objectifs, activites, progression) {
+def moisJanvier(params) {
     // Initialiser le suivi
     def objectifs = [
         "ecrireJournal" : 31, // nb jours objectif
