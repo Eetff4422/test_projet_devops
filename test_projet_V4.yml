@@ -517,7 +517,7 @@ pipeline {
                     // Initialiser le suivi
                     
                     def objectifs = [
-                        "messagePositifEnvoye" : 4 // Nombre de message positif envoyé
+                        "messagePositifEnvoye" : 4, // Nombre de message positif envoyé
                         "aiderUnePersonne" : 10, // Nombre de personne qu'on a aidé dans le mois (ce sera une aide quelconque)
                         "partagerUnTemoignageInspirant" : 5 // Nombre de fois qu'on a partagé un témoignage inspirant à une personne
                     ]
@@ -526,13 +526,13 @@ pipeline {
                     def activites = trackerActivites(objectifs)
 
                     def progression = [
-                        "messagePositifEnvoye" : 0
+                        "messagePositifEnvoye" : 0,
                         "aiderUnePersonne" : 0, 
                         "partagerUnTemoignageInspirant" : 0 
                     ]
 
                     def progression_after_15 = [
-                        "messagePositifEnvoye" : 2
+                        "messagePositifEnvoye" : 2,
                         "aiderUnePersonne" : 6, 
                         "partagerUnTemoignageInspirant" : 1  
                     ]
