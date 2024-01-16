@@ -1,22 +1,22 @@
-def rechercherSpotsCamping(plage, date) {
-    return ["Spot1", "Spot2", "Spot3"]
-}
-def consulterMeteo(plage, date) {
-    return "Météo ensoleillée"
-}
-def partagerPhotos(album, personnes) {
-    println("Photos de l'album $album partagées avec : $personnes")
-}
-def prendrePhoto() {
-    println "Photos prises"
-}
-def envoyerNotification(message) {
-    println("Notification envoyée : $message")
-}
-def trackerActivites(objectifs) {
-    return [sport: 1, meditation: 7] 
-}
-def moisAout(params){
+                    def rechercherSpotsCamping(plage, date) {
+                        return ["Spot1", "Spot2", "Spot3"]
+                    }
+                    def consulterMeteo(plage, date) {
+                        return "Météo ensoleillée"
+                    }
+                    def partagerPhotos(album, personnes) {
+                        println("Photos de l'album $album partagées avec : $personnes")
+                    }
+                    def prendrePhoto() {
+                        println "Photos prises"
+                    }
+                    def envoyerNotification(message) {
+                        println("Notification envoyée : $message")
+                    }
+                    def trackerActivites(objectifs) {
+                        return [sport: 1, meditation: 7] 
+                    }
+
     // Initialiser le suivi
                     
                     def objectifs = [
@@ -88,4 +88,4 @@ def moisAout(params){
                         }
                         
                     }
-}
+
