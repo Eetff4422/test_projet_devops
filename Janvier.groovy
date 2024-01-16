@@ -77,10 +77,5 @@ def moisJanvier(params) {
     }
 
     // Retourner les fonctions
-    return [
-        genererEntreeJournal: { nom -> genererEntreeJournal(nom) },
-        enregistrerDonnees: { donnees -> enregistrerDonnees(donnees) },
-        trackerActivites: { objectifs -> trackerActivites(objectifs) },
-        envoyerNotification: { message -> envoyerNotification(message) }
-    ]
+    return this
 }
