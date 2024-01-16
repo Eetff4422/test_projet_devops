@@ -241,34 +241,34 @@ def moisOctobre(params, objectifs, activites, progression) {
     }
 }
 
-def moisNovembre(params, objectifs, activites, progression) {
-    //def choix = trouverTutoriels("Guitare")[0]
-    def choix = '1'
-    def duree
+// def moisNovembre(params, objectifs, activites, progression) {
+//     //def choix = trouverTutoriels("Guitare")[0]
+//     def choix = '1'
+//     def duree
 
 
-    if (choix == '1') {
-        choix = 'Tuto pour débutant'
-        duree = 10 // en heure
-    } else if (choix == '2') {
-        choix = "Tuto pour niveau intermédiaire"
-        duree = 15 // en heure
-    } else if (choix == '3') {
-        choix = "Tuto pour niveau avancé"
-        duree = 20 // en heure
-    }
+//     if (choix == '1') {
+//         choix = 'Tuto pour débutant'
+//         duree = 10 // en heure
+//     } else if (choix == '2') {
+//         choix = "Tuto pour niveau intermédiaire"
+//         duree = 15 // en heure
+//     } else if (choix == '3') {
+//         choix = "Tuto pour niveau avancé"
+//         duree = 20 // en heure
+//     }
 
-    if (choix && duree) {
-        envoyerNotification("Étude en Novembre pour ${params.NOM} de ${choix} avec une durée totale de ${duree}")
-        progressionCours(duree)
-        envoyerNotification("${params.NOM} vous avez fait ${progressionCours(duree)} de votre cours : ${choix}")
-    } else {
-        println "Une erreur s'est produite."
-    }
+//     if (choix && duree) {
+//         envoyerNotification("Étude en Novembre pour ${params.NOM} de ${choix} avec une durée totale de ${duree}")
+//         progressionCours(duree)
+//         envoyerNotification("${params.NOM} vous avez fait ${progressionCours(duree)} de votre cours : ${choix}")
+//     } else {
+//         println "Une erreur s'est produite."
+//     }
 
-    jouerTutoriel(trouverTutoriels("Guitare")[0])
-    enregistrerPerformance("Morceau d'Elton John et Stevie Wonder : Finish Line")
-}
+//     jouerTutoriel(trouverTutoriels("Guitare")[0])
+//     enregistrerPerformance("Morceau d'Elton John et Stevie Wonder : Finish Line")
+// }
 
 
 def moisDecembre(params, objectifs, activites, progression) {
