@@ -1,4 +1,3 @@
-    println "Voici: $params"
     def genererEntreeJournal(nom) {
         return [titre: "Journal de $nom", texte: "Texte de l'entrée du journal"]
     }
@@ -17,7 +16,7 @@
       "NOM": "Jean",
       "JOUR": 1
     ]
-// Initialiser le suivi
+    // Initialiser le suivi
     def objectifs = [
         "ecrireJournal" : 31, // nb jours objectif
         "lireLivre": 1  // nb livres objectif
