@@ -103,6 +103,12 @@ def progressionCours(duree){
     return pourcentageRealisation
 }
 
+def statSeanceRespi(duree){
+    def dureeFaite = 130 // en minute
+    def pourcentageRealisation = (dureeFaite*100) / (duree)
+    return pourcentageRealisation
+}
+
 def trouverCours(domaine) {
     println "Le domaine choisi est $domaine"
     println "Voici une liste de cours lié au domaine choisi : "
@@ -119,7 +125,7 @@ def trouverCours(domaine) {
 
 def trouverTutoriels(instrument) {
     println "Cours de $instrument choisi"
-    println "1.Tuto de Guitare pour débutant(10H), 2.Tuto de Guitare pour niveau intermédiaire(15H), 3.Tuto de Guitare pour niveau avancé(20H)"
+    println "1.Tuto de Guitare pour débutant(10H)\n, 2.Tuto de Guitare pour niveau intermédiaire(15H)\n, 3.Tuto de Guitare pour niveau avancé(20H)\n"
     return ["1.Tuto de Guitare pour débutant(10H)", "2.Tuto de Guitare pour niveau intermédiaire(15H)", "3.Tuto de Guitare pour niveau avancé(20H)"]
 }
 
@@ -274,6 +280,7 @@ def moisNovembre(params, objectifs, activites, progression) {
 
 def moisDecembre(params, objectifs, activites, progression) {
     lancerMeditationGuidee(10)
+    envoyerNotification("${params.NOM} vous avez fait ${statSeanceRespi(objectifs.statSeance)}% de votre objectif du mois.")
 }
 
 pipeline {
@@ -1057,7 +1064,7 @@ pipeline {
                         "dureeSeance" : 0,
                         "statSeance": 0
                     ]
-
+                    
                     def progression_after_15 = [
                         "nbDefoisAppliMeditationUtilise" : 2, 
                         "dureeSeance" : 10, 
