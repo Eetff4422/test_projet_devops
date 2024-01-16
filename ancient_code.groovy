@@ -286,6 +286,9 @@ pipeline {
 
     stages {
         stage('Janvier') {
+            when {
+                expression { params.MOIS == 'Janvier' } 
+            }
             steps {
                 script {
                     // Initialiser le suivi
@@ -353,6 +356,9 @@ pipeline {
             }
         }
         stage('Fevrier'){
+            when {
+                expression { params.MOIS == 'Fevrier' } 
+            }
             steps{
                 script{
                     // Initialiser le suivi
@@ -421,6 +427,9 @@ pipeline {
             }
         }
         stage('Mars'){
+            when {
+                expression { params.MOIS == 'Mars' } 
+            }
             steps{
                 script{
                     // Initialiser le suivi
@@ -503,6 +512,9 @@ pipeline {
             }
         }
         stage('Avril'){
+            when {
+                expression { params.MOIS == 'Avril' } 
+            }
             steps{
                 script{
                     // Initialiser le suivi
@@ -561,6 +573,9 @@ pipeline {
             }
         }
         stage('Mai'){
+            when {
+                expression { params.MOIS == 'Mai' } 
+            }
             steps{
                 script{
                     // Initialiser le suivi
@@ -617,6 +632,9 @@ pipeline {
             }
         }
         stage('Juin'){
+            when {
+                expression { params.MOIS == 'Juin' } 
+            }
             steps{
                 script{
                     // Initialiser le suivi
@@ -677,6 +695,9 @@ pipeline {
             }
         }
         stage('Juillet'){
+            when {
+                expression { params.MOIS == 'Juillet' } 
+            }
             steps{
                 script{
                     // Initialiser le suivi
@@ -749,6 +770,9 @@ pipeline {
             }
         }
         stage('Aout'){
+            when {
+                expression { params.MOIS == 'Aout' } 
+            }
             steps{
                 script{
                     // Initialiser le suivi
@@ -822,6 +846,9 @@ pipeline {
             }
         }
         stage('Septembre'){
+            when {
+                expression { params.MOIS == 'Septembre' } 
+            }
             steps{
                 script{
                     // Initialiser le suivi
@@ -895,6 +922,9 @@ pipeline {
             }
         }
         stage('Octobre'){
+            when {
+                expression { params.MOIS == 'Octobre' } 
+            }
             steps{
                 script{
                     // Initialiser le suivi
@@ -960,6 +990,9 @@ pipeline {
             }
         }
         stage('Novembre'){
+            when {
+                expression { params.MOIS == 'Novembre' } 
+            }
             steps{
                 script{
                     // Initialiser le suivi
@@ -1025,6 +1058,9 @@ pipeline {
             }
         }
         stage('Decembre'){
+            when {
+                expression { params.MOIS == 'Decembre' } 
+            }
             steps{
                 script{
                     // Initialiser le suivi
