@@ -1,4 +1,4 @@
-
+load('Janvier.groovy')
 
 pipeline {
     agent any
@@ -16,8 +16,8 @@ pipeline {
             }
             steps {
                 script {
-                    def script1 = load('Janvier.groovy')
-                    script1.moisJanvier(params)
+                    load 'Janvier.groovy'
+                    moisJanvier(params)
                 }
             }
         }
