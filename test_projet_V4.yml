@@ -334,7 +334,7 @@ pipeline {
                                 }
                                 
                             }else{
-                                if jourActuel >= 15{
+                                if (jourActuel >= 15){
                                     if (progression_after_15.ecrireJournal == 15){
                                         objectifs.ecrireJournal = 20
                                     }else{
