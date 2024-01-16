@@ -1,4 +1,4 @@
-println "Le script Janvier.groovy est en cours d'exécution."
+// Janvier.groovy
 
 def genererEntreeJournal(nom) {
     return [titre: "Journal de $nom", texte: "Texte de l'entrée du journal"]
@@ -7,9 +7,11 @@ def genererEntreeJournal(nom) {
 def enregistrerDonnees(donnees) {
     println("Données enregistrées en base de données : $donnees")
 }
+
 def trackerActivites(objectifs) {
     return [sport: 1, meditation: 7] 
 }
+
 def envoyerNotification(message) {
     println("Notification envoyée : $message")
 }
@@ -73,4 +75,12 @@ def moisJanvier(params) {
     } else {
         println "Progression au $jourActuel ${params.MOIS} : $progression_after_15"
     }
+
+    // Retourner les fonctions
+    return [
+        genererEntreeJournal: { nom -> genererEntreeJournal(nom) },
+        enregistrerDonnees: { donnees -> enregistrerDonnees(donnees) },
+        trackerActivites: { objectifs -> trackerActivites(objectifs) },
+        envoyerNotification: { message -> envoyerNotification(message) }
+    ]
 }
