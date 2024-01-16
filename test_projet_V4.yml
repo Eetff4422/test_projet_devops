@@ -234,9 +234,9 @@ def moisOctobre(params, objectifs, activites, progression) {
         duree = 15
     }
     if (choix && duree){
-        envoyerNotification("Étude en Octobre pour ${params.NOM} : ${choix} avec un durée totale de ${duree}")
+        envoyerNotification("Étude en Octobre pour ${params.NOM} : ${choix} avec un durée totale de ${duree}H")
         progressionCours(duree)
-        envoyerNotification("${params.NOM} vous avez fait ${progressionCours(duree)} de votre cours : ${choix}")
+        envoyerNotification("${params.NOM} vous avez fait ${progressionCours(duree)}% de votre cours : ${choix}")
     }else{
         println "Une erreur s'est produite."
     }
