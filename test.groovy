@@ -26,6 +26,7 @@ pipeline {
     agent any
     options {
         disableConcurrentBuilds()
+        sandbox true
     }
     parameters {
         choice(name: 'MOIS', choices: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet','Aout', 'Septembre', 'Octobre','Novembre', 'Decembre'], description: 'Choisissez le mois')
@@ -40,7 +41,6 @@ pipeline {
             }
             steps {
                 script {
-                    sandbox true
                     def janvierScriptInstance = loadJanvierScript()
                     janvierScriptInstance.moisJanvier(params)
                 }
