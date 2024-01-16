@@ -14,7 +14,7 @@ pipeline {
             }
             steps {
                 script {
-                    load 'main/Janvier.groovy'
+                    load 'Janvier.groovy'
                     moisJanvier(params)
                 }
             }
