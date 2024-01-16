@@ -283,6 +283,15 @@ def moisDecembre(params, objectifs, activites, progression) {
     envoyerNotification("${params.NOM} vous avez fait ${statSeanceRespi(objectifs.statSeance)}% de votre objectif du mois.")
 }
 
+def afficherProgression(params,mois,objectifs,jourActuel,progression,progression_after_15) {
+	println "Objectifs à atteindre: $objectifs"    
+        if (jourActuel < 15){
+        	println "Progression au $jourActuel $mois : $progression"
+         } else {
+         	println "Progression au $jourActuel $mois : $progression_after_15" 
+         }
+}
+
 pipeline {
     agent any
 
@@ -363,12 +372,7 @@ pipeline {
                             }
                         }
                         // Afficher progression
-                        println "Objectis à atteindre: $objectifs"    
-                        if (jourActuel < 15){
-                            println "Progression au $jourActuel $params.MOIS : $progression"
-                        } else {
-                            println "Progression au $jourActuel $params.MOIS : $progression_after_15"   
-                        }
+                        afficherProgression(params,params.MOIS.toLowerCase(),objectifs,jourActuel,progression,progression_after_15)
                         
                     }
                 }
@@ -431,12 +435,7 @@ pipeline {
                             }
                         }
                         // Afficher progression
-                        println "Objectis à atteindre: $objectifs"    
-                        if (jourActuel < 15){
-                            println "Progression au $jourActuel $params.MOIS : $progression"
-                        } else {
-                            println "Progression au $jourActuel $params.MOIS : $progression_after_15"   
-                        }
+                        afficherProgression(params,params.MOIS.toLowerCase(),objectifs,jourActuel,progression,progression_after_15)
                         
                     }
                 }
@@ -513,12 +512,7 @@ pipeline {
                             }
                         }
                         // Afficher progression
-                        println "Objectis à atteindre: $objectifs"    
-                        if (jourActuel < 15){
-                            println "Progression au $jourActuel $params.MOIS : $progression"
-                        } else {
-                            println "Progression au $jourActuel $params.MOIS : $progression_after_15"   
-                        }
+                        afficherProgression(params,params.MOIS.toLowerCase(),objectifs,jourActuel,progression,progression_after_15)
                         
                     }
                 }
@@ -571,12 +565,7 @@ pipeline {
                             }
                         }
                         // Afficher progression
-                        println "Objectis à atteindre: $objectifs"    
-                        if (jourActuel < 15){
-                            println "Progression au $jourActuel $params.MOIS : $progression"
-                        } else {
-                            println "Progression au $jourActuel $params.MOIS : $progression_after_15"   
-                        }
+                        afficherProgression(params,params.MOIS.toLowerCase(),objectifs,jourActuel,progression,progression_after_15)
                         
                     }
                 }
@@ -627,12 +616,7 @@ pipeline {
                             }
                         }
                         // Afficher progression
-                        println "Objectis à atteindre: $objectifs"    
-                        if (jourActuel < 15){
-                            println "Progression au $jourActuel $params.MOIS : $progression"
-                        } else {
-                            println "Progression au $jourActuel $params.MOIS : $progression_after_15"   
-                        }
+                        afficherProgression(params,params.MOIS.toLowerCase(),objectifs,jourActuel,progression,progression_after_15)
                         
                     }
                 }
@@ -687,12 +671,7 @@ pipeline {
                             }
                         }
                         // Afficher progression
-                        println "Objectis à atteindre: $objectifs"    
-                        if (jourActuel < 15){
-                            println "Progression au $jourActuel $params.MOIS : $progression"
-                        } else {
-                            println "Progression au $jourActuel $params.MOIS : $progression_after_15"   
-                        }
+                        afficherProgression(params,params.MOIS.toLowerCase(),objectifs,jourActuel,progression,progression_after_15)
                         
                     }
                 }
@@ -759,12 +738,7 @@ pipeline {
                             }
                         }
                         // Afficher progression
-                        println "Objectis à atteindre: $objectifs"    
-                        if (jourActuel < 15){
-                            println "Progression au $jourActuel $params.MOIS : $progression"
-                        } else {
-                            println "Progression au $jourActuel $params.MOIS : $progression_after_15"   
-                        }
+                        afficherProgression(params,params.MOIS.toLowerCase(),objectifs,jourActuel,progression,progression_after_15)
                         
                     }
                 }
@@ -832,12 +806,7 @@ pipeline {
                             }
                         }
                         // Afficher progression
-                        println "Objectis à atteindre: $objectifs"    
-                        if (jourActuel < 15){
-                            println "Progression au $jourActuel $params.MOIS : $progression"
-                        } else {
-                            println "Progression au $jourActuel $params.MOIS : $progression_after_15"   
-                        }
+                        afficherProgression(params,params.MOIS.toLowerCase(),objectifs,jourActuel,progression,progression_after_15)
                         
                     }
                 }
@@ -905,12 +874,7 @@ pipeline {
                             }
                         }
                         // Afficher progression
-                        println "Objectis à atteindre: $objectifs"    
-                        if (jourActuel < 15){
-                            println "Progression au $jourActuel $params.MOIS : $progression"
-                        } else {
-                            println "Progression au $jourActuel $params.MOIS : $progression_after_15"   
-                        }
+                        afficherProgression(params,params.MOIS.toLowerCase(),objectifs,jourActuel,progression,progression_after_15)
                         
                     }
                 }
@@ -970,12 +934,7 @@ pipeline {
                             }
                         }
                         // Afficher progression
-                        println "Objectis à atteindre: $objectifs"    
-                        if (jourActuel < 15){
-                            println "Progression au $jourActuel $params.MOIS : $progression"
-                        } else {
-                            println "Progression au $jourActuel $params.MOIS : $progression_after_15"   
-                        }
+                        afficherProgression(params,params.MOIS.toLowerCase(),objectifs,jourActuel,progression,progression_after_15)
                         
                     }
                 }
@@ -1035,12 +994,7 @@ pipeline {
                             }
                         }
                         // Afficher progression
-                        println "Objectis à atteindre: $objectifs"    
-                        if (jourActuel < 15){
-                            println "Progression au $jourActuel $params.MOIS : $progression"
-                        } else {
-                            println "Progression au $jourActuel $params.MOIS : $progression_after_15"   
-                        }
+                        afficherProgression(params,params.MOIS.toLowerCase(),objectifs,jourActuel,progression,progression_after_15)
                         
                     }
                 }
@@ -1099,12 +1053,7 @@ pipeline {
                             }
                         }
                         // Afficher progression
-                        println "Objectis à atteindre: $objectifs"    
-                        if (jourActuel < 15){
-                            println "Progression au $jourActuel $params.MOIS : $progression"
-                        } else {
-                            println "Progression au $jourActuel $params.MOIS : $progression_after_15"   
-                        }
+                        afficherProgression(params,params.MOIS.toLowerCase(),objectifs,jourActuel,progression,progression_after_15)
                         
                     }
                 }
