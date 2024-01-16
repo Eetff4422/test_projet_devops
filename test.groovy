@@ -14,7 +14,7 @@ pipeline {
             }
             steps {
                 script {
-                    load 'test_projet_devops/blob/main/Janvier.groovy'
+                    load 'main/Janvier.groovy'
                     moisJanvier(params)
                 }
             }
