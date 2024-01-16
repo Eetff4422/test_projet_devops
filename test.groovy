@@ -14,15 +14,8 @@ pipeline {
             }
             steps {
                 script {
-                    def functions = load 'Janvier.groovy'
-                    def genererEntreeJournal = functions.genererEntreeJournal
-                    def enregistrerDonnees = functions.enregistrerDonnees
-                    def trackerActivites = functions.trackerActivites
-                    def envoyerNotification = functions.envoyerNotification
-                    
-                    // Utiliser les fonctions comme nécessaire
-                    genererEntreeJournal('John')
-                    enregistrerDonnees([titre: 'Mon titre', texte: 'Mon texte'])
+                    def customFunctions = load 'Janvier.groovy'
+                    customFunctions.moisJanvier(params)
 
                 }
             }
