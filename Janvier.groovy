@@ -1,4 +1,4 @@
-
+    println "Voici: $params"
     def genererEntreeJournal(nom) {
         return [titre: "Journal de $nom", texte: "Texte de l'entrée du journal"]
     }
@@ -12,7 +12,7 @@
     def envoyerNotification(message) {
         println("Notification envoyée : $message")
     }
-    def params = [
+    def par = [
       "MOIS" : "Janvier", // nb jours objectif
       "NOM": "Jean",
       "JOUR": 1
@@ -35,13 +35,13 @@
     ]
 
     // Calculer progression en fonction du jour
-    def jourActuel = params.JOUR.toInteger()
+    def jourActuel = par.JOUR.toInteger()
 
     if (jourActuel >= 1 && jourActuel < 15) {
         progression.ecrireJournal = jourActuel
-        genererEntreeJournal("${params.NOM}").with {
+        genererEntreeJournal("${par.NOM}").with {
             enregistrerDonnees(it)
-            envoyerNotification("Nouvelle entrée pour ${params.NOM}")
+            envoyerNotification("Nouvelle entrée pour ${par.NOM}")
         }
     } else {
         if (progression_after_15.ecrireJournal >= 15 && jourActuel == progression_after_15.ecrireJournal) {
@@ -71,7 +71,7 @@
     // Afficher progression
     println "Objectifs à atteindre: $objectifs"
     if (jourActuel < 15) {
-        println "Progression au $jourActuel ${params.MOIS} : $progression"
+        println "Progression au $jourActuel ${par.MOIS} : $progression"
     } else {
-        println "Progression au $jourActuel ${params.MOIS} : $progression_after_15"
+        println "Progression au $jourActuel ${par.MOIS} : $progression_after_15"
     }
