@@ -1,9 +1,6 @@
 pipeline {
     agent any
-    options {
-        disableConcurrentBuilds()
-        sandbox true
-    }
+    
     parameters {
         choice(name: 'MOIS', choices: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet','Aout', 'Septembre', 'Octobre','Novembre', 'Decembre'], description: 'Choisissez le mois')
         string(name: 'NOM', defaultValue: 'Jean', description: 'Entrez votre nom')
