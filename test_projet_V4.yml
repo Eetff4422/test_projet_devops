@@ -219,10 +219,8 @@ def moisSeptembre(params, objectifs, activites, progression) {
 }
 
 def moisOctobre(params, objectifs, activites, progression) {
-    def domaine = input("Veuillez écrire un nom de domaine : ")
-    //domaineRecherche(domaine)
     def liste_cours = trouverCours(domaine)
-    def choix = input("Faites un choix (1,2 ou 3) : ${liste_cours}")
+    def choix = '2'
     if (choix == '1'){
         choix = 'Comprendre le web'
         def duree = 6
@@ -243,12 +241,10 @@ def moisOctobre(params, objectifs, activites, progression) {
 }
 
 def moisNovembre(params, objectifs, activites, progression) {
-    def liste_cours = trouverTutoriels("Guitare")[0]
-    def choix
+    //def choix = trouverTutoriels("Guitare")[0]
+    def choix = '1'
     def duree
 
-    def inputMessage = "Faites un choix (1, 2 ou 3) : ${liste_cours}"
-    choix = input(inputMessage)
 
     if (choix == '1') {
         choix = 'Tuto pour débutant'
