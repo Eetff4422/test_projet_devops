@@ -21,7 +21,7 @@ pipeline {
             }
             steps {
                 script {
-                    Janvier.moisJanvier()
+                    Janvier.moisJanvier(params)
                 }
             }
         }
