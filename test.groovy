@@ -14,10 +14,15 @@ pipeline {
             }
             steps {
                 script {
-                    def scriptOutput = load 'Janvier.groovy'
-
-                    // Afficher la sortie du script
-                    echo "Sortie du script Janvier.groovy : ${scriptOutput}"
+                    def functions = load 'Janvier.groovy'
+                    def genererEntreeJournal = functions.genererEntreeJournal
+                    def enregistrerDonnees = functions.enregistrerDonnees
+                    def trackerActivites = functions.trackerActivites
+                    def envoyerNotification = functions.envoyerNotification
+                    
+                    // Utiliser les fonctions comme nécessaire
+                    genererEntreeJournal('John')
+                    enregistrerDonnees([titre: 'Mon titre', texte: 'Mon texte'])
 
                 }
             }
