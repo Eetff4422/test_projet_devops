@@ -1,14 +1,13 @@
-def envoyerMessagePositif(personne) {
-    println("Message positif envoyé à : $personne")
-}
-def recupererPersonne() {
-    return "Jasmine"
-}
-def trackerActivites(objectifs) {
-    return [sport: 1, meditation: 7] 
-}
-def moisAvril(params, objectifs, activites, progression){
-    // Initialiser le suivi
+                    def envoyerMessagePositif(personne) {
+                        println("Message positif envoyé à : $personne")
+                    }
+                    def recupererPersonne() {
+                        return "Jasmine"
+                    }
+                    def trackerActivites(objectifs) {
+                        return [sport: 1, meditation: 7] 
+                    }
+
                     
                     def objectifs = [
                         "messagePositifEnvoye" : 4, // Nombre de message positif envoyé
@@ -62,4 +61,3 @@ def moisAvril(params, objectifs, activites, progression){
                         }
                         
                     }
-}
