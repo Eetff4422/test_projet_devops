@@ -219,6 +219,7 @@ def moisSeptembre(params, objectifs, activites, progression) {
 }
 
 def moisOctobre(params, objectifs, activites, progression) {
+    def domaine = 'web'
     def liste_cours = trouverCours(domaine)
     def choix = '2'
     if (choix == '1'){
