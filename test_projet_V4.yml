@@ -815,7 +815,7 @@ pipeline {
                             if (progression_after_15.rechercherSpotPourCamper>=3 && progression_after_15.consulterMeteo >=1){
                                 if (progression_after_15.prendrePhotoCoucherSoleil == 0){
                                     println "Tu es sur la bonne voie pour atteindre tous tes objectifs du mois mais n'oublie pas de prendre des photos à ta prochaine escapade et de les partager avec tes proches."
-                                } else if (progression_after_15.prendrePhotoCoucherSoleil == 1 && progression_after_15partagerPhotoCoucherSoleil == 0){
+                                } else if (progression_after_15.prendrePhotoCoucherSoleil == 1 && progression_after_15.partagerPhotoCoucherSoleil == 0){
                                     println "Tu es sur la bonne voie pour atteindre tous tes objectifs du mois mais n'oublie pas de partager tes expériences avec un proche."
                                 } else {
                                     println "Tu es sur la bonne voie continue comme ça et tu atteindras ton objectif du mois."
