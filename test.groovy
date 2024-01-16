@@ -1,8 +1,9 @@
 @Grapes([
-  @Grab(group='monrepo', module='src', version='master', classifier='Fichier1') 
+  @Grab(group='test_projet_devops
+', module='', version='main', classifier='Janvier') 
 ])
 
-import monrepo.src.Fichier1
+import test_projet_devops.Janvier
 
 pipeline {
     agent any
@@ -20,120 +21,120 @@ pipeline {
             }
             steps {
                 script {
-                    
+                    Janvier.moisJanvier()
                 }
             }
         }
-        stage('Fevrier'){
-            when {
-            expression { params.MOIS == 'Fevrier' } 
-            }
-            steps{
-                script{
+        // stage('Fevrier'){
+        //     when {
+        //     expression { params.MOIS == 'Fevrier' } 
+        //     }
+        //     steps{
+        //         script{
                 
-                }
-            }
-        }
-        stage('Mars'){
-            when {
-            expression { params.MOIS == 'Mars' } 
-            }
-            steps{
-                script{
+        //         }
+        //     }
+        // }
+        // stage('Mars'){
+        //     when {
+        //     expression { params.MOIS == 'Mars' } 
+        //     }
+        //     steps{
+        //         script{
     
-                }
-            }
-        }
-        stage('Avril'){
-            when {
-            expression { params.MOIS == 'Avril' } 
-            }
-            steps{
-                script{
+        //         }
+        //     }
+        // }
+        // stage('Avril'){
+        //     when {
+        //     expression { params.MOIS == 'Avril' } 
+        //     }
+        //     steps{
+        //         script{
                     
-                }
-            }
-        }
-        stage('Mai'){
-            when {
-            expression { params.MOIS == 'Mai' } 
-            }
-            steps{
-                script{
+        //         }
+        //     }
+        // }
+        // stage('Mai'){
+        //     when {
+        //     expression { params.MOIS == 'Mai' } 
+        //     }
+        //     steps{
+        //         script{
                     
-                }
-            }
-        }
-        stage('Juin'){
-            when {
-            expression { params.MOIS == 'Juin' } 
-            }
-            steps{
-                script{
+        //         }
+        //     }
+        // }
+        // stage('Juin'){
+        //     when {
+        //     expression { params.MOIS == 'Juin' } 
+        //     }
+        //     steps{
+        //         script{
                     
-                }
-            }
-        }
-        stage('Juillet'){
-            when {
-            expression { params.MOIS == 'Juillet' } 
-            }
-            steps{
-                script{
+        //         }
+        //     }
+        // }
+        // stage('Juillet'){
+        //     when {
+        //     expression { params.MOIS == 'Juillet' } 
+        //     }
+        //     steps{
+        //         script{
                     
-                }
-            }
-        }
-        stage('Aout'){
-            when {
-            expression { params.MOIS == 'Aout' } 
-            }
-            steps{
-                script{
+        //         }
+        //     }
+        // }
+        // stage('Aout'){
+        //     when {
+        //     expression { params.MOIS == 'Aout' } 
+        //     }
+        //     steps{
+        //         script{
                     
-                }
-            }
-        }
-        stage('Septembre'){
-            when {
-            expression { params.MOIS == 'Septembre' } 
-            }
-            steps{
-                script{
+        //         }
+        //     }
+        // }
+        // stage('Septembre'){
+        //     when {
+        //     expression { params.MOIS == 'Septembre' } 
+        //     }
+        //     steps{
+        //         script{
                     
-                }
-            }
-        }
-        stage('Octobre'){
-            when {
-            expression { params.MOIS == 'Octobre' } 
-            }
-            steps{
-                script{
+        //         }
+        //     }
+        // }
+        // stage('Octobre'){
+        //     when {
+        //     expression { params.MOIS == 'Octobre' } 
+        //     }
+        //     steps{
+        //         script{
                     
-                }
-            }
-        }
-        stage('Novembre'){
-            when {
-            expression { params.MOIS == 'Novembre' } 
-            }
-            steps{
-                script{
+        //         }
+        //     }
+        // }
+        // stage('Novembre'){
+        //     when {
+        //     expression { params.MOIS == 'Novembre' } 
+        //     }
+        //     steps{
+        //         script{
                     
-                }
-            }
-        }
-        stage('Decembre'){
-            when {
-            expression { params.MOIS == 'Decembre' } 
-            }
-            steps{
-                script{
+        //         }
+        //     }
+        // }
+        // stage('Decembre'){
+        //     when {
+        //     expression { params.MOIS == 'Decembre' } 
+        //     }
+        //     steps{
+        //         script{
                     
-                }
-            }
-        }
+        //         }
+        //     }
+        // }
     }
 }
 
