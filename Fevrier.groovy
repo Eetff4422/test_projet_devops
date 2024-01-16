@@ -1,21 +1,21 @@
-def enregistrerApercu(apercu) {
-    println("Aperçu enregistré : $apercu")
-}
-def telechargerPhotosMaison() {
-    println "Photos de maison ajoutées "
-    return ["photo1.jpg", "photo2.jpg", "photo3.jpg"]
-}
-def genererApercu3D(photos, meubles) {
-    println("Aperçu 3D généré à partir de photos et meubles")
-    return "Apercu3D"
-}
-def selectionnerMeubles() {
-    return ["Canapé", "Table", "Chaise"]
-}
-def trackerActivites(objectifs) {
-    return [sport: 1, meditation: 7] 
-}
-def moisFevrier(params, objectifs, activites, progression){
+                    def enregistrerApercu(apercu) {
+                        println("Aperçu enregistré : $apercu")
+                    }
+                    def telechargerPhotosMaison() {
+                        println "Photos de maison ajoutées "
+                        return ["photo1.jpg", "photo2.jpg", "photo3.jpg"]
+                    }
+                    def genererApercu3D(photos, meubles) {
+                        println("Aperçu 3D généré à partir de photos et meubles")
+                        return "Apercu3D"
+                    }
+                    def selectionnerMeubles() {
+                        return ["Canapé", "Table", "Chaise"]
+                    }
+                    def trackerActivites(objectifs) {
+                        return [sport: 1, meditation: 7] 
+                    }
+
                     def objectifs = [
                     // 1: tâche effectuée 0: tâche non effectuée
                         "photosMaison" : 1, 
@@ -81,4 +81,3 @@ def moisFevrier(params, objectifs, activites, progression){
                         }
                         
                     }                    
-}
