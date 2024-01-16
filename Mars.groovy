@@ -1,14 +1,14 @@
-def verifierObjectifs(objectifs, activites) {
-    println("Vérification des objectifs atteints")
-    return true
-}
-def envoyerNotification(message) {
-    println("Notification envoyée : $message")
-}
-def trackerActivites(objectifs) {
-    return [sport: 1, meditation: 7] 
-}
-def moisMars (params, objectifs, activites, progression){
+                    def verifierObjectifs(objectifs, activites) {
+                        println("Vérification des objectifs atteints")
+                        return true
+                    }
+                    def envoyerNotification(message) {
+                        println("Notification envoyée : $message")
+                    }
+                    def trackerActivites(objectifs) {
+                        return [sport: 1, meditation: 7] 
+                    }
+
                     def objectifs = [
                         "faireDuSport" : 8, //Faire du sport chaque week-end (samedi et dimanche) - 8 correspond au nombre de jours de séance dans un mois 
                         "préparerUnRepasSain": 20, // Préparer un repas sain au moins 20 jours dans le mois
@@ -85,4 +85,4 @@ def moisMars (params, objectifs, activites, progression){
                         }
                         
                     }
-}
+
