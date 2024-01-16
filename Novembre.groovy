@@ -1,29 +1,28 @@
-def trouverTutoriels(instrument) {
-    println "Cours de $instrument choisi"
-    println "1.Tuto de Guitare pour débutant(10H)\n, 2.Tuto de Guitare pour niveau intermédiaire(15H)\n, 3.Tuto de Guitare pour niveau avancé(20H)\n"
-    return ["1.Tuto de Guitare pour débutant(10H)", "2.Tuto de Guitare pour niveau intermédiaire(15H)", "3.Tuto de Guitare pour niveau avancé(20H)"]
-}
+                    def trouverTutoriels(instrument) {
+                        println "Cours de $instrument choisi"
+                        println "1.Tuto de Guitare pour débutant(10H)\n, 2.Tuto de Guitare pour niveau intermédiaire(15H)\n, 3.Tuto de Guitare pour niveau avancé(20H)\n"
+                        return ["1.Tuto de Guitare pour débutant(10H)", "2.Tuto de Guitare pour niveau intermédiaire(15H)", "3.Tuto de Guitare pour niveau avancé(20H)"]
+                    }
+                    
+                    def jouerTutoriel(tuto) {
+                        println("Tutoriel joué : $tuto")
+                    }
+                    def trackerActivites(objectifs) {
+                        return [sport: 1, meditation: 7] 
+                    }
+                    def enregistrerPerformance(morceau) {
+                        println("Performance enregistrée pour le morceau : $morceau")
+                    }
+                    def progressionCours(duree){
+                        def dureeFaite = 500 // en minute
+                        def pourcentageRealisation = (dureeFaite*100) / (duree*60)
+                        return pourcentageRealisation
+                    }
+                    def envoyerNotification(message) {
+                        println("Notification envoyée : $message")
+                    }
 
-def jouerTutoriel(tuto) {
-    println("Tutoriel joué : $tuto")
-}
-def trackerActivites(objectifs) {
-    return [sport: 1, meditation: 7] 
-}
-def enregistrerPerformance(morceau) {
-    println("Performance enregistrée pour le morceau : $morceau")
-}
-def progressionCours(duree){
-    def dureeFaite = 500 // en minute
-    def pourcentageRealisation = (dureeFaite*100) / (duree*60)
-    return pourcentageRealisation
-}
-def envoyerNotification(message) {
-    println("Notification envoyée : $message")
-}
 
-def moisNovembre(params, objectifs, activites, progression){
-    // Initialiser le suivi
                     
                     def objectifs = [
                         "coursPris" : 3, // Nombre de cours minimum à prendre dans le mois (bien sûr il s'exercera également tout seul chez lui)
@@ -107,4 +106,3 @@ def moisNovembre(params, objectifs, activites, progression){
                         }
                         
                     }
-}
