@@ -1,19 +1,18 @@
-def envoyerNotification(message) {
-    println("Notification envoyée : $message")
-}
-def lancerMeditationGuidee(duree) {
-    println("Méditation guidée lancée pour une durée de $duree minutes")
-}
-def statSeanceRespi(duree){
-    def dureeFaite = 130 // en minute
-    def pourcentageRealisation = (dureeFaite*100) / (duree)
-    return pourcentageRealisation
-}
-def trackerActivites(objectifs) {
-    return [sport: 1, meditation: 7] 
-}
-def moisDecembre(params, objectifs, activites, progression){
-    // Initialiser le suivi
+                    def envoyerNotification(message) {
+                        println("Notification envoyée : $message")
+                    }
+                    def lancerMeditationGuidee(duree) {
+                        println("Méditation guidée lancée pour une durée de $duree minutes")
+                    }
+                    def statSeanceRespi(duree){
+                        def dureeFaite = 130 // en minute
+                        def pourcentageRealisation = (dureeFaite*100) / (duree)
+                        return pourcentageRealisation
+                    }
+                    def trackerActivites(objectifs) {
+                        return [sport: 1, meditation: 7] 
+                    }
+
                     
                     def objectifs = [
                         "nbDefoisAppliMeditationUtilise" : 5, // Nombre de fois que l'utilisateur doit utiliser une appli de méditation dans le mois
@@ -72,4 +71,3 @@ def moisDecembre(params, objectifs, activites, progression){
                         }
                         
                     }
-}
