@@ -1,3 +1,5 @@
+println "Le script Janvier.groovy est en cours d'exécution."
+
 def genererEntreeJournal(nom) {
     return [titre: "Journal de $nom", texte: "Texte de l'entrée du journal"]
 }
