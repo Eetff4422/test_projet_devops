@@ -12,7 +12,8 @@ def partagerPhotos(album, personnes) {
 }
 
 def rechercherConcerts(ville, mois) {
-    return ["Concert1", "Concert2", "Concert3"]
+    println "Concert le mois de $mois dans la ville de $ville"
+    return ["Concert de Ice Spice", "Concert de Taylor Swift", "Concert de Central Cee"]
 }
 
 def acheterBillets(concert) {
@@ -25,7 +26,8 @@ def rechercherSpotsCamping(plage, date) {
 }
 
 def rechercherIdeesVoyage(continent) {
-    return ["Idée1", "Idée2", "Idée3"]
+    println "Continent : $continent"
+    return ["Visiter Tokyo", "Visiter Seoul", "Visiter Pekin"]
 }
 
 def genererApercu3D(photos, meubles) {
@@ -42,7 +44,7 @@ def definirObjectifsSante() {
 }
 
 def trackerActivites(objectifs) {
-    return [sport: 1, meditation: 7] // Valeurs fictives, assurez-vous de fournir des données réelles
+    return [sport: 1, meditation: 7] 
 }
 
 def verifierObjectifs(objectifs, activites) {
@@ -71,7 +73,11 @@ def selectionnerMeubles() {
 }
 
 def recupererPersonne() {
-    return "Personne1"
+    return "Jasmine"
+}
+
+def prendrePhoto() {
+    println "Photos prises"
 }
 
 def albumVacances() {
@@ -87,8 +93,33 @@ def planifierItineraire(ideeVoyage) {
     return "ItinérairePlanifié"
 }
 
+// def domaineRecherche(entry){
+//     return $entry
+// }
+
+def progressionCours(duree){
+    def dureeFaite = 500 // en minute
+    def pourcentageRealisation = (dureeFaite*100) / (duree*60)
+    return pourcentageRealisation
+}
+
+def trouverCours(domaine) {
+    println "Le domaine choisi est $domaine"
+    println "Voici une liste de cours lié au domaine choisi : "
+    if (domaine == 'web'){
+        println ["1.Comprendre le web (6H)", "2.Apprenez à programmez en JavaScript (12H)","3.Créez votre site web avec HTML5 et CSS3 (15H)" ]
+        return ["1.Comprendre le web (6H)", "2.Apprenez à programmez en JavaScript (12H)","3.Créez votre site web avec HTML5 et CSS3 (15H)" ]
+    }else{
+        println "Aucun cours trouvé"
+    }
+    
+    
+}
+
 def trouverTutoriels(instrument) {
-    return ["Tuto1", "Tuto2", "Tuto3"]
+    println "Cours de $instrument choisi"
+    println ["1.Tuto de Guitare pour débutant(10H)", "2.Tuto de Guitare pour niveau intermédiaire(15H)", "3.Tuto de Guitare pour niveau avancé(20H)"]
+    return ["1.Tuto de Guitare pour débutant(10H)", "2.Tuto de Guitare pour niveau intermédiaire(15H)", "3.Tuto de Guitare pour niveau avancé(20H)"]
 }
 
 def jouerTutoriel(tuto) {
@@ -123,9 +154,9 @@ def prendreCoursEchecs() {
     return "Cours d'échecs commencés"
 }
 
-def etudierDevOps() {
-    return "Cours de DevOps étudié avec succès"
-}
+// def etudierDevOps() {
+//     return "Cours de DevOps étudié avec succès"
+// }
 
 def moisJanvier(params, objectifs, activites, progression) {
     genererEntreeJournal("${params.NOM}").with {
@@ -145,6 +176,8 @@ def moisFevrier(params, objectifs, activites, progression) {
 
 def moisMars(params, objectifs, activites, progression) {
     verifierObjectifs(objectifs, activites)
+    envoyerNotification("Ta progression : ${progression}")
+    envoyerNotification("Le succès est la somme de petits efforts, répétés jour après jour. On croit en toi, tu peux le faire.")
 }
 
 def moisAvril(params, objectifs, activites, progression) {
@@ -157,13 +190,11 @@ def moisMai(params, objectifs, activites, progression) {
     [inscrireMarathon(), prendreCoursSalsa(), apprendreCrochet(), faireVoyageFamille(), prendreCoursEchecs()].each {
         envoyerNotification("Nouvelle activité pour ${params.NOM} en Mai : $it")
     }
-    if (calculerPourcentageRealisation(objectifs, activites) < 50) {
-        ajusterObjectifs(objectifs)
-    }
 }
 
 def moisJuin(params, objectifs, activites, progression) {
     planifierEvenement("Pique-nique", "12/06/2023", ["Maman", "Papa"])
+    prendrePhoto()
     partagerPhotos(albumVacances(), ["Mamie", "Papi"])
 }
 
@@ -171,12 +202,16 @@ def moisJuillet(params, objectifs, activites, progression) {
     acheterBillets(rechercherConcerts("Paris", "Juillet")[0]).with {
         envoyerNotification("Billets achetés pour le concert : $it")
     }
+    prendrePhoto()
+    partagerPhotos("concert", ["Fred", "Benjamin"])
 }
 
 def moisAout(params, objectifs, activites, progression) {
     [rechercherSpotsCamping("Plage du Prado", "15/08/2023"), consulterMeteo("Plage du Prado", "15/08/2023")].each {
-        // Traiter les résultats si nécessaire
+        envoyerNotification(it)
     }
+    prendrePhoto()
+    partagerPhotos("coucher de soleil", ["Alfred", "Robin"])
 }
 
 def moisSeptembre(params, objectifs, activites, progression) {
@@ -184,20 +219,55 @@ def moisSeptembre(params, objectifs, activites, progression) {
 }
 
 def moisOctobre(params, objectifs, activites, progression) {
-    envoyerNotification("Étude en Octobre pour ${params.NOM} : ${etudierDevOps()}")
-    if (calculerPourcentageRealisation(objectifs, activites) < 50) {
-        ajusterObjectifs(objectifs)
+    def domaine = input("Veuillez écrire un nom de domaine : ")
+    //domaineRecherche(domaine)
+    def liste_cours = trouverCours(domaine)
+    def choix = input("Faites un choix (1,2 ou 3) : ${liste_cours}")
+    if (choix == '1'){
+        choix = 'Comprendre le web'
+        def duree = 6
+    } else if( choix == '2'){
+        choix = "Apprenez à programmez en JavaScript"
+        def duree = 12
+    } else if ( choix == '3'){
+        choix = "Créez votre site web avec HTML5 et CSS3"
+        def duree = 15
+    }
+    if (choix && duree){
+        envoyerNotification("Étude en Octobre pour ${params.NOM} : ${choix} avec un durée totale de ${duree}")
+        progressionCours(duree)
+        envoyerNotification("${params.NOM} vous avez fait ${progressionCours(duree)} de votre cours : ${choix}")
+    }else{
+        println "Une erreur s'est produite."
     }
 }
 
 def moisNovembre(params, objectifs, activites, progression) {
+    def liste_cours = trouverTutoriels("Guitare")[0]
+    def choix = input("Faites un choix (1,2 ou 3) : ${liste_cours}")
+    if (choix == '1'){
+        choix = 'Tuto pour débutant'
+        def duree = 10 // en heure
+    } else if( choix == '2'){
+        choix = "Tuto pour niveau intermédiaire"
+        def duree = 15 // en heure
+    } else if ( choix == '3'){
+        choix = "Tuto pour niveau avancé"
+        def duree = 20 // en heure
+    }
+    if (choix && duree){
+        envoyerNotification("Étude en Novembre pour ${params.NOM} de ${choix} avec un durée totale de ${duree}")
+        progressionCours(duree)
+        envoyerNotification("${params.NOM} vous avez fait ${progressionCours(duree)} de votre cours : ${choix}")
+    }else{
+        println "Une erreur s'est produite."
+    }
     jouerTutoriel(trouverTutoriels("Guitare")[0])
-    enregistrerPerformance("Morceau 1")
+    enregistrerPerformance("Morceau d'Elton John et Stevie Wonder : Finish Line")
 }
 
 def moisDecembre(params, objectifs, activites, progression) {
     lancerMeditationGuidee(10)
-    // Ajouter d'autres étapes pour le mois de Décembre si nécessaire
 }
 
 pipeline {
@@ -249,13 +319,13 @@ pipeline {
                     if (params.MOIS == 'Janvier') {
                         // Calculer progression en fonction du jour
                         def jourActuel = params.JOUR.toInteger()
-                        if (params.JOUR == '1') {
+                        if (params.JOUR >= '1' && params.JOUR <'15') {
 
                             progression.ecrireJournal = jourActuel 
 
                             // Appeler fonction mois
                             moisJanvier(params, objectifs, activites, progression)
-                        }else if(params.JOUR >= '15'){
+                        }else{
                             if (progression_after_15.ecrireJournal>=15 && jourActuel == progression_after_15.ecrireJournal){
                                 if (progression_after_15.lireLivre == 1 ){
                                     println "Tu es sur la bonne voie, continue de remplir quotidiennement ton journal et tu atteindras ton objectif du mois."
@@ -264,7 +334,7 @@ pipeline {
                                 }
                                 
                             }else{
-                                if (jourActuel >= 15){
+                                if jourActuel >= 15{
                                     if (progression_after_15.ecrireJournal == 15){
                                         objectifs.ecrireJournal = 20
                                     }else{
@@ -280,7 +350,7 @@ pipeline {
                             }
                         }
                         // Afficher progression
-                        println "Objectifs à atteindre: $objectifs"    
+                        println "Objectis à atteindre: $objectifs"    
                         if (jourActuel < 15){
                             println "Progression au $jourActuel janvier : $progression"
                         } else {
@@ -320,33 +390,35 @@ pipeline {
                     if (params.MOIS == 'Fevrier') {
                         // Calculer progression en fonction du jour
                         def jourActuel = params.JOUR.toInteger()
-                        if (params.JOUR == '1') {
+                        if (params.JOUR >= '1' && params.JOUR <'15') {
 
-                            progression.photosMaison = 1 
+                            progression.photosMaison = 1
+                            progression.choixMeubles = 1
+                            progression.aperçu3D = 1 
 
                             // Appeler fonction mois
                             moisFevrier(params, objectifs, activites, progression)
-                        }else if(params.JOUR >= '15'){
+                        }else{
                             if (progression_after_15.photosMaison>=1){
-                                if (progression_after_15.photosMaison== 1 && progression_after_15.choixMeubles== 1 && progression_after_15.photosMaison== 0){
+                                if (progression_after_15.photosMaison== 1 && progression_after_15.choixMeubles== 1 && progression_after_15.aperçu3D== 0){
                                     println "Tu es sur la bonne voie continue comme ça, il te manque que la visualisation 3D de ta maison avec les nouveaux meubles sélectionnés et tu atteindras ton objectif du mois."
-                                }else if (progression_after_15.photosMaison== 1 && progression_after_15.choixMeubles== 0 && progression_after_15.photosMaison== 0){
+                                }else if (progression_after_15.photosMaison== 1 && progression_after_15.choixMeubles== 0 && progression_after_15.aperçu3D== 0){
                                     println "Tu as pris un peu de retard mais n'abandonne pas tu peux encore y arriver, il te manque que la sélection de nouveaux meubles ainsi que la visualisation 3D de ta maison avec les nouveaux meubles sélectionnés et tu atteindras ton objectif du mois."
-                                }else if (progression_after_15.photosMaison== 1 && progression_after_15.choixMeubles== 1 && progression_after_15.photosMaison== 1){
+                                }else if (progression_after_15.photosMaison== 1 && progression_after_15.choixMeubles== 1 && progression_after_15.aperçu3D== 1){
                                     println "Félicitations tu as atteint ton objectif du mois. Ta motivation a été exemplaire, par conséquent nous te proposons un nouvel objectif. Bonne chance"
                                     progression_after_15 = ["contacterUnProfessionnel": 0]
                                     objectifs = ["contacterUnProfessionnel": 0]
                                 }
                             }else{
-                                progression = progression.remove("aperçu3D")
+                                progression.aperçu3D = 0
 
-                                objectifs = objectifs.remove("aperçu3D") 
+                                objectifs.aperçu3D = 0
                                 
                                 println "Malheureusement je vois que t'auras du mal à réaliser tes objectifs. Mais ne t'inquiète pas je les ai réajuster pour te permettre de les atteindre. Bonne chance"
                             }
                         }
                         // Afficher progression
-                        println "Objectifs à atteindre: $objectifs"    
+                        println "Objectis à atteindre: $objectifs"    
                         if (jourActuel < 15){
                             println "Progression au $jourActuel fevrier : $progression"
                         } else {
@@ -385,13 +457,15 @@ pipeline {
                     if (params.MOIS == 'Mars') {
                         // Calculer progression en fonction du jour
                         def jourActuel = params.JOUR.toInteger()
-                        if (params.JOUR == '1') {
+                        if (params.JOUR >= '1' && params.JOUR <'15') {
 
-                            progression.faireDuSport = 1 
+                            progression.faireDuSport = 4
+                            progression.préparerUnRepasSain = 8
+                            progression.nombreDeNotif = 14
 
                             // Appeler fonction mois
                             moisMars(params, objectifs, activites, progression)
-                        }else if(params.JOUR >= '15'){
+                        }else{
                             if (progression_after_15.faireDuSport==4 && progression_after_15.préparerUnRepasSain>=5){
                                 if (params.JOUR == 15){
                                     if (progression_after_15.préparerUnRepasSain>=5){
@@ -403,10 +477,9 @@ pipeline {
                                     if (progression_after_15.préparerUnRepasSain>=10){
                                         println "Tu es sur la bonne voie continue de manger sainement et de faire de l'exercice et tu atteindras ton objectif du mois."
                                     }else{
-                                        progression = progression.remove("préparerUnRepasSain")
-                                        progression_after_15 = progression_after_15.remove("préparerUnRepasSain")
+                                        progression.préparerUnRepasSain = 0
 
-                                        objectifs = objectifs.remove("préparerUnRepasSain") 
+                                        objectifs.préparerUnRepasSain = 0 
                                         println "Malheureusement je vois que t'auras du mal à réaliser l'un de tes objectifs. Mais ne t'inquiète pas je les ai réajuster pour te permettre de les atteindre. Bonne chance"
                                     }
                                 }
@@ -427,7 +500,7 @@ pipeline {
                             }
                         }
                         // Afficher progression
-                        println "Objectifs à atteindre: $objectifs"    
+                        println "Objectis à atteindre: $objectifs"    
                         if (jourActuel < 15){
                             println "Progression au $jourActuel mars : $progression"
                         } else {
@@ -444,7 +517,7 @@ pipeline {
                     // Initialiser le suivi
                     
                     def objectifs = [
-                        "messagePositifEnvoye" : 4, // Nombre de message positif envoyé
+                        "messagePositifEnvoye" : 4 // Nombre de message positif envoyé
                         "aiderUnePersonne" : 10, // Nombre de personne qu'on a aidé dans le mois (ce sera une aide quelconque)
                         "partagerUnTemoignageInspirant" : 5 // Nombre de fois qu'on a partagé un témoignage inspirant à une personne
                     ]
@@ -453,29 +526,29 @@ pipeline {
                     def activites = trackerActivites(objectifs)
 
                     def progression = [
-                        "messagePositifEnvoye" : 0,
+                        "messagePositifEnvoye" : 0
                         "aiderUnePersonne" : 0, 
                         "partagerUnTemoignageInspirant" : 0 
                     ]
 
                     def progression_after_15 = [
-                        "messagePositifEnvoye" : 2,
+                        "messagePositifEnvoye" : 2
                         "aiderUnePersonne" : 6, 
-                        "partagerUnTemoignageInspirant" : 2  
+                        "partagerUnTemoignageInspirant" : 1  
                     ]
 
                     if (params.MOIS == 'Avril') {
                         // Calculer progression en fonction du jour
                         def jourActuel = params.JOUR.toInteger()
-                        if (params.JOUR == '1') {
+                        if (params.JOUR >= '1' && params.JOUR <'15') {
 
-                            progression.aiderUnePersonne = 1 
-                            progression.partagerUnTemoignageInspirant = 1
+                            progression.aiderUnePersonne = 6 
+                            progression.partagerUnTemoignageInspirant = 2
 
                             // Appeler fonction mois
                             moisAvril(params, objectifs, activites, progression)
                             progression.messagePositifEnvoye = 1
-                        }else if(params.JOUR >= '15'){
+                        }else{
                             if (progression_after_15.aiderUnePersonne>=5){
                                 println "Tu es sur la bonne voie continue comme ça et tu atteindras ton objectif du mois."
                             }else{
@@ -485,7 +558,7 @@ pipeline {
                             }
                         }
                         // Afficher progression
-                        println "Objectifs à atteindre: $objectifs"    
+                        println "Objectis à atteindre: $objectifs"    
                         if (jourActuel < 15){
                             println "Progression au $jourActuel mars : $progression"
                         } else {
@@ -521,17 +594,17 @@ pipeline {
                     if (params.MOIS == 'Mai') {
                         // Calculer progression en fonction du jour
                         def jourActuel = params.JOUR.toInteger()
-                        if (params.JOUR == '1') {
+                        if (params.JOUR >= '1' && params.JOUR <'15') {
 
-                            progression.activiteRealisee = 1 
-                            progression.nouvelleActiviteConsultee = 1
+                            progression.activiteRealisee = 2 
+                            progression.nouvelleActiviteConsultee = 0
 
                             // Appeler fonction mois
                             moisMai(params, objectifs, activites, progression)
-                        }else if(params.JOUR >= '15'){
-                            if (progression_after_15.activiteRealisee>=2 && progression_after_15.nouvelleActiviteConsultee==1){
+                        }else{
+                            if (progression_after_15.activiteRealisee>=2 && nouvelleActiviteConsultee==1){
                                 println "Tu es sur la bonne voie continue comme ça et tu atteindras ton objectif du mois."
-                            }else if(progression_after_15.activiteRealisee>=3 && progression_after_15.nouvelleActiviteConsultee>=2){
+                            }else if(progression_after_15.activiteRealisee>=3 && nouvelleActiviteConsultee>=2){
                                 println "Félicitation, tu as atteint tous tes objectifs."
                             }else{
                                 objectifs.activiteRealisee = 2
@@ -541,7 +614,7 @@ pipeline {
                             }
                         }
                         // Afficher progression
-                        println "Objectifs à atteindre: $objectifs"    
+                        println "Objectis à atteindre: $objectifs"    
                         if (jourActuel < 15){
                             println "Progression au $jourActuel mars : $progression"
                         } else {
@@ -580,14 +653,14 @@ pipeline {
                     if (params.MOIS == 'Juin') {
                         // Calculer progression en fonction du jour
                         def jourActuel = params.JOUR.toInteger()
-                        if (params.JOUR == '1') {
+                        if (params.JOUR >= '1' && params.JOUR <'15') {
 
-                            progression.activiteAvecProche = 1 
+                            progression.activiteAvecProche = 3 
                             progression.ablumPhotoPartagee = 1 
 
                             // Appeler fonction mois
                             moisJuin(params, objectifs, activites, progression)
-                        }else if(params.JOUR >= '15'){
+                        }else{
                             if (progression_after_15.activiteAvecProche>=2 && progression_after_15.ablumPhotoPartagee >=2 && progression_after_15.invitationEnvoyee>=1){
                                 println "Tu es sur la bonne voie continue comme ça et tu atteindras ton objectif du mois."
                             }else if(progression_after_15.activiteAvecProche>=3 && progression_after_15.ablumPhotoPartagee >=3 && progression_after_15.invitationEnvoyee>=2){
@@ -601,7 +674,420 @@ pipeline {
                             }
                         }
                         // Afficher progression
-                        println "Objectifs à atteindre: $objectifs"    
+                        println "Objectis à atteindre: $objectifs"    
+                        if (jourActuel < 15){
+                            println "Progression au $jourActuel mars : $progression"
+                        } else {
+                            println "Progression au $jourActuel mars : $progression_after_15"   
+                        }
+                        
+                    }
+                }
+            }
+        }
+        stage('Juillet'){
+            steps{
+                script{
+                    // Initialiser le suivi
+                    
+                    def objectifs = [
+                        "rechercherConcert" : 5, 
+                        "acheterBillets" : 4,
+                        "prendrePhotoEtVideoConcert": 1,
+                        "partagerPhotoEtVideoConcert" : 4 
+                    ]
+                    
+                    def activites = trackerActivites(objectifs)
+
+                    def progression = [
+                        "rechercherConcert" : 0, 
+                        "acheterBillets" : 0,
+                        "prendrePhotoEtVideoConcert": 0,
+                        "partagerPhotoEtVideoConcert" : 0 
+                    ]
+
+                    def progression_after_15 = [
+                        "rechercherConcert" : 3, 
+                        "acheterBillets" : 2,
+                        "prendrePhotoEtVideoConcert": 1, 
+                        "partagerPhotoEtVideoConcert" : 1   
+                    ]
+
+                    if (params.MOIS == 'Juillet') {
+                        // Calculer progression en fonction du jour
+                        def jourActuel = params.JOUR.toInteger()
+                        if (params.JOUR >= '1' && params.JOUR <'15') {
+
+                            progression.rechercherConcert = 3 
+                            progression.acheterBillets = 2
+                            progression.prendrePhotoEtVideoConcert = 1 
+                            progression.partagerPhotoEtVideoConcert = 1
+
+                            // Appeler fonction mois
+                            moisJuillet(params, objectifs, activites, progression)
+                        }else{
+                            if (progression_after_15.rechercherConcert>=3 && progression_after_15.acheterBillets >=2){
+                                if (prendrePhotoEtVideoConcert == 0){
+                                    println "Tu es sur la bonne voie pour atteindre tous tes objectifs du mois mais n'oublie pas de prendre des photos à ton prochain concert et de les partager avec tes proches."
+                                } else if (prendrePhotoEtVideoConcert == 1 && partagerPhotoEtVideoConcert == 0){
+                                    println "Tu es sur la bonne voie pour atteindre tous tes objectifs du mois mais n'oublie pas de partager tes expériences avec un proche."
+                                } else {
+                                    println "Tu es sur la bonne voie continue comme ça et tu atteindras ton objectif du mois."
+                                }
+                                
+                            }else if(progression_after_15.rechercherConcert>=5 && progression_after_15.acheterBillets >=4 && progression_after_15.partagerPhotoEtVideo>=4){
+                                println "Félicitation, tu as atteint tous tes objectifs."
+                            }else{
+                                objectifs.rechercherConcert = 3 
+                                objectifs.acheterBillets = 2
+                                objectifs.partagerPhotoEtVideo = 2
+                                
+                                println "Malheureusement je vois que t'auras du mal à réaliser tes objectifs. Mais ne t'inquiète pas je les ai réajuster pour te permettre de les atteindre. Bonne chance"
+                            }
+                        }
+                        // Afficher progression
+                        println "Objectis à atteindre: $objectifs"    
+                        if (jourActuel < 15){
+                            println "Progression au $jourActuel mars : $progression"
+                        } else {
+                            println "Progression au $jourActuel mars : $progression_after_15"   
+                        }
+                        
+                    }
+                }
+            }
+        }
+        stage('Aout'){
+            steps{
+                script{
+                    // Initialiser le suivi
+                    
+                    def objectifs = [
+                        "rechercherSpotPourCamper" : 3, 
+                        "consulterMeteo" : 1,
+                        "prendrePhotoCoucherSoleil" : 1,
+                        "partagerPhotoCoucherSoleil": 1
+                    ]
+                    
+                    def activites = trackerActivites(objectifs)
+
+                    def progression = [
+                        "rechercherSpotPourCamper" : 0, 
+                        "consulterMeteo" : 0,
+                        "prendrePhotoCoucherSoleil" : 0,
+                        "partagerPhotoCoucherSoleil": 0
+                    ]
+
+                    def progression_after_15 = [
+                        "rechercherSpotPourCamper" : 3, 
+                        "consulterMeteo" : 1,
+                        "prendrePhotoCoucherSoleil" : 1,
+                        "partagerPhotoCoucherSoleil": 1   
+                    ]
+
+                    if (params.MOIS == 'Aout') {
+                        // Calculer progression en fonction du jour
+                        def jourActuel = params.JOUR.toInteger()
+                        if (params.JOUR >= '1' && params.JOUR <'15') {
+
+                            progression.rechercherSpotPourCamper = 3 // Nombre de spot trouvé pour un lieu à une date souhaité
+                            progression.consulterMeteo = 1 //Consulter la meteo d'un lieu à une date souhaité 
+                            progression.prendrePhotoCoucherSoleil = 1 // Nombre de photo prise du coucher du soleil
+                            progression.partagerPhotoCoucherSoleil = 1 // Nombre de photo partagée du coucher du soleil
+
+
+                            // Appeler fonction mois
+                            moisAout(params, objectifs, activites, progression)
+                        }else{
+                            if (progression_after_15.rechercherSpotPourCamper>=3 && progression_after_15.consulterMeteo >=1){
+                                if (prendrePhotoCoucherSoleil == 0){
+                                    println "Tu es sur la bonne voie pour atteindre tous tes objectifs du mois mais n'oublie pas de prendre des photos à ta prochaine escapade et de les partager avec tes proches."
+                                } else if (prendrePhotoCoucherSoleil == 1 && partagerPhotoCoucherSoleil == 0){
+                                    println "Tu es sur la bonne voie pour atteindre tous tes objectifs du mois mais n'oublie pas de partager tes expériences avec un proche."
+                                } else {
+                                    println "Tu es sur la bonne voie continue comme ça et tu atteindras ton objectif du mois."
+                                }
+                            }else if(progression_after_15.rechercherSpotPourCamper>=3 && progression_after_15.consulterMeteo >=1 && progression_after_15.partagerPhotoCoucherSoleil>=1 && progression_after_15.partagerPhotoCoucherSoleil>=1){
+                                println "Félicitation, tu as atteint tous tes objectifs."
+                            }else{
+                                objectifs.rechercherSpotPourCamper = 2 
+                                objectifs.consulterMeteo = 1
+                                objectifs.partagerPhotoCoucherSoleil = 0
+                                objectifs.prendrePhotoCoucherSoleil = 0
+                                
+                                println "Malheureusement je vois que t'auras du mal à réaliser tes objectifs. Mais ne t'inquiète pas je les ai réajuster pour te permettre de les atteindre. Bonne chance"
+                            }
+                        }
+                        // Afficher progression
+                        println "Objectis à atteindre: $objectifs"    
+                        if (jourActuel < 15){
+                            println "Progression au $jourActuel mars : $progression"
+                        } else {
+                            println "Progression au $jourActuel mars : $progression_after_15"   
+                        }
+                        
+                    }
+                }
+            }
+        }
+        stage('Septembre'){
+            steps{
+                script{
+                    // Initialiser le suivi
+                    
+                    def objectifs = [
+                        "rechercherSpotPourCamper" : 3, 
+                        "consulterMeteo" : 1,
+                        "prendrePhotoCoucherSoleil" : 1,
+                        "partagerPhotoCoucherSoleil": 1
+                    ]
+                    
+                    def activites = trackerActivites(objectifs)
+
+                    def progression = [
+                        "rechercherSpotPourCamper" : 0, 
+                        "consulterMeteo" : 0,
+                        "prendrePhotoCoucherSoleil" : 0,
+                        "partagerPhotoCoucherSoleil": 0
+                    ]
+
+                    def progression_after_15 = [
+                        "rechercherSpotPourCamper" : 3, 
+                        "consulterMeteo" : 1,
+                        "prendrePhotoCoucherSoleil" : 1,
+                        "partagerPhotoCoucherSoleil": 1   
+                    ]
+
+                    if (params.MOIS == 'Septembre') {
+                        // Calculer progression en fonction du jour
+                        def jourActuel = params.JOUR.toInteger()
+                        if (params.JOUR >= '1' && params.JOUR <'15') {
+
+                            progression.rechercherSpotPourCamper = 3 // Nombre de spot trouvé pour un lieu à une date souhaité
+                            progression.consulterMeteo = 1 //Consulter la meteo d'un lieu à une date souhaité 
+                            progression.prendrePhotoCoucherSoleil = 1 // Nombre de photo prise du coucher du soleil
+                            progression.partagerPhotoCoucherSoleil = 1 // Nombre de photo partagée du coucher du soleil
+
+
+                            // Appeler fonction mois
+                            moisSeptembre(params, objectifs, activites, progression)
+                        }else{
+                            if (progression_after_15.rechercherSpotPourCamper>=3 && progression_after_15.consulterMeteo >=1){
+                                if (progression_after_15.prendrePhotoCoucherSoleil == 0){
+                                    println "Tu es sur la bonne voie pour atteindre tous tes objectifs du mois mais n'oublie pas de prendre des photos à ta prochaine escapade et de les partager avec tes proches."
+                                } else if (progression_after_15.prendrePhotoCoucherSoleil == 1 && progression_after_15.partagerPhotoCoucherSoleil == 0){
+                                    println "Tu es sur la bonne voie pour atteindre tous tes objectifs du mois mais n'oublie pas de partager tes expériences avec un proche."
+                                } else {
+                                    println "Tu es sur la bonne voie continue comme ça et tu atteindras ton objectif du mois."
+                                }
+                            }else if(progression_after_15.rechercherSpotPourCamper>=3 && progression_after_15.consulterMeteo >=1 && progression_after_15.partagerPhotoCoucherSoleil>=1 && progression_after_15.partagerPhotoCoucherSoleil>=1){
+                                println "Félicitation, tu as atteint tous tes objectifs."
+                            }else{
+                                objectifs.rechercherSpotPourCamper = 2 
+                                objectifs.consulterMeteo = 1
+                                objectifs.partagerPhotoCoucherSoleil = 0
+                                objectifs.prendrePhotoCoucherSoleil = 0
+                                
+                                println "Malheureusement je vois que t'auras du mal à réaliser tes objectifs. Mais ne t'inquiète pas je les ai réajuster pour te permettre de les atteindre. Bonne chance"
+                            }
+                        }
+                        // Afficher progression
+                        println "Objectis à atteindre: $objectifs"    
+                        if (jourActuel < 15){
+                            println "Progression au $jourActuel mars : $progression"
+                        } else {
+                            println "Progression au $jourActuel mars : $progression_after_15"   
+                        }
+                        
+                    }
+                }
+            }
+        }
+        stage('Octobre'){
+            steps{
+                script{
+                    // Initialiser le suivi
+                    
+                    def objectifs = [
+                        "coursTrouves" : 4, // Nombre de cours minimum à choisir 
+                        "coursInscrit" : 3, // Nombre de cours minimum où s'inscrire
+                        "dureeMinimum": 2400 //en minutes (10h pour chaque cours, pour total de 4 cours minimum ou l'équivalent avec moins ou plus de cours)  
+                    ]
+                    
+                    def activites = trackerActivites(objectifs)
+
+                    def progression = [
+                        "coursTrouves" : 0, 
+                        "coursInscrit" : 0,
+                        "dureeMinimum": 0
+                    ]
+
+                    def progression_after_15 = [
+                        "coursTrouves" : 5,  
+                        "coursInscrit" : 2 ,
+                        "dureeMinimum": 500    
+                    ]
+
+                    if (params.MOIS == 'Octobre') {
+                        // Calculer progression en fonction du jour
+                        def jourActuel = params.JOUR.toInteger()
+                        if (params.JOUR >= '1' && params.JOUR <'15') {
+
+                            progression.coursTrouves = 5 
+                            progression.coursInscrit = 2
+                            progression.dureeMinimum = 500 
+
+                            // Appeler fonction mois
+                            moisOctobre(params, objectifs, activites, progression)
+                        }else{
+                            if (progression_after_15.coursTrouves>=2 && progression_after_15.coursInscrit >=2){
+                                if (progression_after_15.dureeMinimum < 1200){
+                                    println "Si tu veux atteindre tes objectifs du mois tu devras suivre plus de cours."
+                                } else {
+                                    println "Tu es sur la bonne voie continue comme ça et tu atteindras ton objectif du mois."
+                                }
+                            }else if(progression_after_15.coursTrouves>=4 && progression_after_15.coursInscrit >=3 && progression_after_15.dureeMinimum>=2400){
+                                println "Félicitation, tu as atteint tous tes objectifs."
+                            }else{
+                                objectifs.coursTrouves = 2 
+                                objectifs.coursInscrit = 1
+                                objectifs.dureeMinimum = 1000
+                                
+                                println "Malheureusement je vois que t'auras du mal à réaliser tes objectifs. Mais ne t'inquiète pas je les ai réajuster pour te permettre de les atteindre. Bonne chance"
+                            }
+                        }
+                        // Afficher progression
+                        println "Objectis à atteindre: $objectifs"    
+                        if (jourActuel < 15){
+                            println "Progression au $jourActuel mars : $progression"
+                        } else {
+                            println "Progression au $jourActuel mars : $progression_after_15"   
+                        }
+                        
+                    }
+                }
+            }
+        }
+        stage('Novembre'){
+            steps{
+                script{
+                    // Initialiser le suivi
+                    
+                    def objectifs = [
+                        "coursPris" : 3, // Nombre de cours minimum à prendre dans le mois (bien sûr il s'exercera également tout seul chez lui)
+                        "nbDeChansonJoueeEnCover" : 2, // Nombre de chanson minimum jouer en cover
+                        "dureeMinimum": 560 //en minutes (20min chaque jours pendant 1 mois)  
+                    ]
+                    
+                    def activites = trackerActivites(objectifs)
+
+                    def progression = [
+                        "coursPris" : 0, 
+                        "nbDeChansonJoueeEnCover" : 0,
+                        "dureeMinimum": 0
+                    ]
+
+                    def progression_after_15 = [
+                        "coursPris" : 3,  
+                        "nbDeChansonJoueeEnCover" : 3 ,
+                        "dureeMinimum": 500    
+                    ]
+
+                    if (params.MOIS == 'Novembre') {
+                        // Calculer progression en fonction du jour
+                        def jourActuel = params.JOUR.toInteger()
+                        if (params.JOUR >= '1' && params.JOUR <'15') {
+
+                            progression.coursPris = 3
+                            progression.nbDeChansonJoueeEnCover = 3
+                            progression.dureeMinimum = 600 
+
+                            // Appeler fonction mois
+                            moisNovembre(params, objectifs, activites, progression)
+                        }else{
+                            if (progression_after_15.coursPris>=2 && progression_after_15.nbDeChansonJoueeEnCover >=1){
+                                if (progression_after_15.dureeMinimum < 280){
+                                    println "Si tu veux atteindre tes objectifs du mois tu devras suivre plus de cours."
+                                } else {
+                                    println "Tu es sur la bonne voie continue comme ça et tu atteindras ton objectif du mois."
+                                }
+                            }else if(progression_after_15.coursTrouves>=4 && progression_after_15.coursInscrit >=3 && progression_after_15.dureeMinimum>=2400){
+                                println "Félicitation, tu as atteint tous tes objectifs."
+                            }else{
+                                objectifs.coursPris = 2 
+                                objectifs.nbDeChansonJoueeEnCover = 1
+                                objectifs.dureeMinimum = 280
+                                
+                                println "Malheureusement je vois que t'auras du mal à réaliser tes objectifs. Mais ne t'inquiète pas je les ai réajuster pour te permettre de les atteindre. Bonne chance"
+                            }
+                        }
+                        // Afficher progression
+                        println "Objectis à atteindre: $objectifs"    
+                        if (jourActuel < 15){
+                            println "Progression au $jourActuel mars : $progression"
+                        } else {
+                            println "Progression au $jourActuel mars : $progression_after_15"   
+                        }
+                        
+                    }
+                }
+            }
+        }
+        stage('Decembre'){
+            steps{
+                script{
+                    // Initialiser le suivi
+                    
+                    def objectifs = [
+                        "coursPris" : 3, // Nombre de cours minimum à prendre dans le mois (bien sûr il s'exercera également tout seul chez lui)
+                        "nbDeChansonJoueeEnCover" : 2, // Nombre de chanson minimum jouer en cover
+                        "dureeMinimum": 560 //en minutes (20min chaque jours pendant 1 mois)  
+                    ]
+                    
+                    def activites = trackerActivites(objectifs)
+
+                    def progression = [
+                        "coursPris" : 0, 
+                        "nbDeChansonJoueeEnCover" : 0,
+                        "dureeMinimum": 0
+                    ]
+
+                    def progression_after_15 = [
+                        "coursPris" : 3,  
+                        "nbDeChansonJoueeEnCover" : 3 ,
+                        "dureeMinimum": 600    
+                    ]
+
+                    if (params.MOIS == 'Decembre') {
+                        // Calculer progression en fonction du jour
+                        def jourActuel = params.JOUR.toInteger()
+                        if (params.JOUR >= '1' && params.JOUR <'15') {
+
+                            progression.coursPris = 3
+                            progression.nbDeChansonJoueeEnCover = 3
+                            progression.dureeMinimum = 600 
+
+                            // Appeler fonction mois
+                            moisDecembre(params, objectifs, activites, progression)
+                        }else{
+                            if (progression_after_15.coursPris>=2 && progression_after_15.nbDeChansonJoueeEnCover >=1){
+                                if (progression_after_15.dureeMinimum < 280){
+                                    println "Si tu veux atteindre tes objectifs du mois tu devras suivre plus de cours."
+                                } else {
+                                    println "Tu es sur la bonne voie continue comme ça et tu atteindras ton objectif du mois."
+                                }
+                            }else if(progression_after_15.coursTrouves>=4 && progression_after_15.coursInscrit >=3 && progression_after_15.dureeMinimum>=2400){
+                                println "Félicitation, tu as atteint tous tes objectifs."
+                            }else{
+                                objectifs.coursPris = 2 
+                                objectifs.nbDeChansonJoueeEnCover = 1
+                                objectifs.dureeMinimum = 280
+                                
+                                println "Malheureusement je vois que t'auras du mal à réaliser tes objectifs. Mais ne t'inquiète pas je les ai réajuster pour te permettre de les atteindre. Bonne chance"
+                            }
+                        }
+                        // Afficher progression
+                        println "Objectis à atteindre: $objectifs"    
                         if (jourActuel < 15){
                             println "Progression au $jourActuel mars : $progression"
                         } else {
@@ -615,17 +1101,3 @@ pipeline {
     }
 }
 
-def calculerPourcentageRealisation(objectifs, activites) {
-    def totalObjectifs = objectifs.values().sum()
-    def totalActivites = activites.values().sum()
-
-    return (totalObjectifs == 0) ? 0 : (totalActivites / totalObjectifs) * 100
-}
-
-def ajusterObjectifs(objectifs) {
-    def nouveauxObjectifs = [:]
-    objectifs.each { k, v -> nouveauxObjectifs[k] = v / 2 }
-    objectifs.clear()
-    objectifs.putAll(nouveauxObjectifs)
-    envoyerNotification("Les objectifs ont été ajustés à mi-parcours.")
-}
