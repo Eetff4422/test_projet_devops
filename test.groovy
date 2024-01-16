@@ -1,3 +1,27 @@
+import groovy.lang.GroovyClassLoader
+
+def loadJanvierScript() {
+    def janClass
+    def classLoader = new GroovyClassLoader(this.class.classLoader)
+    
+    // Charger la classe JanvierScript depuis le fichier Janvier.groovy
+    try {
+        janClass = classLoader.parseClass(new File('Janvier.groovy'))
+    } catch (Exception e) {
+        echo "Erreur lors du chargement de Janvier.groovy: ${e.message}"
+        return null
+    }
+
+    // Instancier la classe JanvierScript
+    def janvierScript = janClass.newInstance()
+
+    // Appeler la méthode trackerActivites
+    // def result = janvierScript.moisJanvier()
+    // echo "Résultat: ${result}"
+
+    return janvierScript
+}
+
 pipeline {
     agent any
 
@@ -14,9 +38,8 @@ pipeline {
             }
             steps {
                 script {
-                    def customFunctions = load 'Janvier.groovy'
-                    customFunctions.moisJanvier(params)
-
+                    def janvierScriptInstance = loadJanvierScript()
+                    janvierScriptInstance.moisJanvier(params)
                 }
             }
         }
