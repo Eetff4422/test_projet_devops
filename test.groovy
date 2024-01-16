@@ -14,8 +14,11 @@ pipeline {
             }
             steps {
                 script {
-                    load 'Janvier.groovy'
-                    moisJanvier(params)
+                    def scriptOutput = load 'Janvier.groovy'
+
+                    // Afficher la sortie du script
+                    echo "Sortie du script Janvier.groovy : ${scriptOutput}"
+
                 }
             }
         }
