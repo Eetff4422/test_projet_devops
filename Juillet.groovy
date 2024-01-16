@@ -1,26 +1,25 @@
-def rechercherConcerts(ville, mois) {
-    println "Concert le mois de $mois dans la ville de $ville"
-    return ["Concert de Ice Spice", "Concert de Taylor Swift", "Concert de Central Cee"]
-}
+                    def rechercherConcerts(ville, mois) {
+                        println "Concert le mois de $mois dans la ville de $ville"
+                        return ["Concert de Ice Spice", "Concert de Taylor Swift", "Concert de Central Cee"]
+                    }
+                    
+                    def acheterBillets(concert) {
+                        println("Billets achetés pour le concert : $concert")
+                        return ["Billet1", "Billet2"]
+                    }
+                    def trackerActivites(objectifs) {
+                        return [sport: 1, meditation: 7] 
+                    }
+                    def envoyerNotification(message) {
+                        println("Notification envoyée : $message")
+                    }
+                    def prendrePhoto() {
+                        println "Photos prises"
+                    }
+                    def partagerPhotos(album, personnes) {
+                        println("Photos de l'album $album partagées avec : $personnes")
+                    }
 
-def acheterBillets(concert) {
-    println("Billets achetés pour le concert : $concert")
-    return ["Billet1", "Billet2"]
-}
-def trackerActivites(objectifs) {
-    return [sport: 1, meditation: 7] 
-}
-def envoyerNotification(message) {
-    println("Notification envoyée : $message")
-}
-def prendrePhoto() {
-    println "Photos prises"
-}
-def partagerPhotos(album, personnes) {
-    println("Photos de l'album $album partagées avec : $personnes")
-}
-def moisJuillet(params, objectifs, activites, progression){
-    // Initialiser le suivi
                     
                     def objectifs = [
                         "rechercherConcert" : 5, 
@@ -90,4 +89,3 @@ def moisJuillet(params, objectifs, activites, progression){
                         }
                         
                     }
-}
